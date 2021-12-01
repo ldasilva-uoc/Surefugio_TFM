@@ -1,0 +1,9 @@
+<h1>Donde hacer voluntariado</h1>
+<p>Se muesra {{protectoras.length}} protectoras</p>
+<div class="list list_protectoras">
+    <div *ngFor="let protectora of protectoras" class="card" [routerLink]="['/protectora', protectora.id]">
+        <div class="card-body">
+          {{protectora.nombre}}
+        </div>
+      </div>
+</div>

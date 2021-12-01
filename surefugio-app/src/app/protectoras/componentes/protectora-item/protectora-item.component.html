@@ -1,0 +1,11 @@
+<h1>{{protectora?.nombre}}</h1>
+
+<h2>Animales</h2>
+<p>Se muesra {{animales.length}} animales</p>
+<div class="list list_animales">
+    <div *ngFor="let animal of animales" class="card" [routerLink]="['/animal', animal.id]">
+        <div class="card-body">
+          {{animal.nombre}} | {{animal.especie}}
+        </div>
+      </div>
+</div>

@@ -1,0 +1,18 @@
+<p>mis-animales works!</p>
+<h1>Mis animales</h1>
+
+<p>Se muestra {{animales.length}} animales</p>
+<div>
+  <button type="button" class="btn btn-primary" [routerLink]="['/protectora/animal/add']">Añadir</button>
+</div>
+<div class="list list_animales">
+    <div *ngFor="let animal of animales" class="card" [routerLink]="['/animal', animal.id]">
+        <div class="card-body">
+          {{animal.nombre}} | {{animal.especie}}
+        </div>
+        <div>
+          <button type="button" class="btn btn-primary" [routerLink]="['/protectora/animal/edit', animal.id]">Editar</button>
+          <button type="button" class="btn btn-danger" (click)="deleteAnimal(animal)">Eliminar</button>
+        </div>
+      </div>
+</div>
