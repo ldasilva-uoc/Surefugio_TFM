@@ -17,6 +17,8 @@ export class HeaderComponent implements OnInit {
   public islogin:boolean;
   public user: User;
   public protectora: Protectora;
+
+  public name: String
   //public particular: Particular;
 
   constructor(private store: Store<AppState>, private service: ProfileProtectoraService) { 
@@ -25,6 +27,15 @@ export class HeaderComponent implements OnInit {
       this.islogin = login.loggedIn;
       this.isProtectora = login.protectora;
       this.user = login.auth;
+
+      if(this.isProtectora && this.islogin ){
+        this.store.dispatch(ProtectoraProfileAction.getProtectora());
+      }
+
+    });
+
+    this.store.select('profileProtectoraApp').subscribe(protectora => {
+        this.name = protectora.protectora.nombre;
     });
 
   }

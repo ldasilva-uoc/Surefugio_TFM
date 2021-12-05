@@ -1,0 +1,12 @@
+.formulario {
+  width: 30%;
+}
+
+button {
+  width: 30%;
+}
+
+.registrarse p,
+.registrarse a {
+  text-align: center;
+}

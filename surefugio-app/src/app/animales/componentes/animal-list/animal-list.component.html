@@ -1,9 +1,40 @@
-<h1>Animales</h1>
-<p>Se muesra {{animales.length}} animales</p>
-<div class="list list_animales">
-    <div *ngFor="let animal of animales" class="card" [routerLink]="['/animal', animal.id]">
+<div class="container" style="margin-top: 3%;">
+  <div class="filtro">
+    
+  </div>
+
+  <div>
+    <h1>Animales</h1>
+    <p>{{animales.length}} animales</p>
+
+    <div class="list list_animales d-flex flex-wrap" style=" gap: 12px;">
+      <div class="card" style="width: 18rem;" *ngFor="let animal of animales" [routerLink]="['/animal', animal.id]">
+   
         <div class="card-body">
-          {{animal.nombre}} | {{animal.especie}}
+          <h5 class="card-title">{{animal.nombre}}</h5>
+          <p class="card-text">{{animal.especie}}</p>
+          <p class="card-text">{{animal.pais}}, {{animal.ciudad}}</p>
+          <a href="#" class="btn btn-primary" *ngIf="islogin && !isProtectora">Favorito</a>
         </div>
+        <img src="../../../../assets/imagenes/Perro.png" class="card-img-buton" alt="...">
+        <div class="card-body" *ngIf="animal.urgente">
+          Urgente
+        </div>
+        <div class="card-body" *ngIf="!animal.urgente && animal.adopcion && !animal.acogida">
+          Adopcion
+        </div>
+        <div class="card-body" *ngIf="!animal.urgente && animal.adopcion && animal.acogida">
+          Acogida
+        </div>
+       
       </div>
+    </div>
+
+
+  </div>
+
+
+  
 </div>
+
+

@@ -1,1 +1,110 @@
-<h1>{{animal?.nombre}}</h1>
+
+<div class="fondo">
+
+    <div class="container" >
+   
+    <div class="row justify-content-center">
+        <div class="header d-flex justify-content-between align-items-center">
+            <div>
+                <h1>{{animal?.nombre}}</h1>
+                <p>{{animal?.ciudad}}, {{animal?.pais}}</p>
+                <div>
+                    <a [routerLink]="['/protectora', animal?.protectora_id]" >{{protectora_nom}}</a>
+                </div>
+                
+            </div>
+            <div class="d-flex flex-column align-items-center">
+                <button class="btn btn-primary" type="submit">Quiero adoptarlo!</button>
+                <a href="">Quiero acoger</a>
+            </div>
+        </div>
+    
+        <div class="body row justify-content-between" >
+            <div class="col-md-4 cuadrado">
+                <img src="../../../../assets/imagenes/Perro.png" class="card-img-buton" alt="...">
+    
+                <div class="estado" *ngIf="animal?.urgente">
+                    Urgente
+                  </div>
+                <div class="estado" *ngIf="!animal?.urgente && animal?.adopcion && !animal?.acogida">
+                    Adopcion
+                  </div>
+                <div class="estado" *ngIf="!animal?.urgente && animal?.adopcion && animal?.acogida">
+                    Acogida
+                </div>
+            </div>
+            <div class="col-md-8 row justify-content-between">
+                <div class="cuadrado col-md-5">
+                    <h3>Mis datos</h3>
+                    <ul>
+                        <li class="row justify-content-between">
+                            <p class="col-6">Especie</p>
+                            <p class="col-6 right_text">{{animal?.especie}}</p>
+                        </li>
+                        <li class="row justify-content-between">
+                            <p class="col-6">Años</p>
+                            <p class="col-6 right_text">{{animal?.fecha_nacimiento}}</p>
+                        </li>
+                        <li class="row justify-content-between">
+                            <p class="col-6">Sexo</p>
+                            <p class="col-6 right_text">{{animal?.sexo}}</p>
+                        </li>
+                        <li class="row justify-content-between">
+                            <p class="col-6">Tamaño</p>
+                            <p class="col-6 right_text "></p>
+                        </li>
+                    </ul>
+                </div>
+    
+                <div class="col-md-5 cuadrado">
+                    <h3>Datos de entrega</h3>
+                    <ul>
+                        <li class="row justify-content-between">
+                            <p class="col-6">Vacunado</p>
+                            <p class="col-6 right_text">{{animal?.vacunado}}</p>
+                        </li>
+                        <li class="row justify-content-between">
+                            <p class="col-6">Desparasitado</p>
+                            <p class="col-6 right_text">{{animal?.desparasitado}}</p>
+                        </li>
+                        <li class="row justify-content-between">
+                            <p class="col-6">Esterilizado</p>
+                            <p class="col-6 right_text">{{animal?.esterilizado}}</p>
+                        </li>
+                        <li class="row justify-content-between">
+                            <p class="col-6">Con microchip</p>
+                            <p class="col-6 right_text">{{animal?.microchip}}</p>
+                        </li>
+                    </ul>
+                </div>
+    
+                <div class="col-md-5">
+                    <h3>Tasa de adopción</h3>
+                    <p class="tasa" *ngIf="animal?.tasa_adopcion === 'tasa'" >
+                        {{animal?.tasa}} euros
+                    </p>
+                    <p *ngIf="animal?.tasa_adopcion != 'tasa'" >
+                        {{animal?.tasa_adopcion}}
+                    </p>
+                </div>
+    
+                <div class="col-md-5">
+                    <h3>Opción de envío</h3>
+                    <p>{{animal?.envio}}</p>
+                </div>
+            </div>
+                
+    
+            <div class="col-12 historia">
+                <h3> Mis historia y peronalidad</h3> 
+                <p>
+                    {{animal?.descripcion}}
+                </p>
+            </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+</div>

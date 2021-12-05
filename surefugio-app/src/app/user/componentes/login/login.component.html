@@ -1,23 +1,40 @@
-<h1>Login</h1>
-<div>    
-    <form [formGroup]="loginForm" (ngSubmit)="checkLogin()">    
-        <!-- Email -->
-        <input type="email" [formControl]="email" class="form-control" placeholder="User E-mail">
-        <span style="color: red;" *ngIf="loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)">
-            <span *ngIf="loginForm.get('email')?.errors?.required">Email is required</span> 
-            <span *ngIf="loginForm.get('email')?.errors?.email">Email doesn't have a correct format</span>   
-        </span>
-        <!-- Password -->
-        <input type="password" [formControl]="password" class="form-control" placeholder="User Password">
-        <span style="color: red;" *ngIf="loginForm.get('password')?.errors && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)">
-            <span *ngIf="loginForm.get('password')?.errors?.required">User pwd is required</span>    
-        </span>
-        <div class="row">
-            <h3 style="color: red;" *ngIf="loginState$.error && (bSubmitted)">
-                Invalid user or password
-            </h3>
-        </div>
-        <!-- Sign in button -->
-        <button class="btn btn-primary my-4" type="submit" [disabled]="!loginForm.valid">Sign in</button>
-    </form>    
+
+<div class="mw-100 mh-100">
+
+    <div class="container position-absolute top-50 start-50 translate-middle formulario row justify-content-center">
+        <h1 class="text-center">Login</h1>
+        <div>    
+            <form [formGroup]="loginForm" (ngSubmit)="checkLogin()" class="row justify-content-center">    
+                <!-- Email -->
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" [formControl]="email" class="form-control" placeholder="User E-mail">
+                    <span style="color: red;" *ngIf="loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)">
+                        <span *ngIf="loginForm.get('email')?.errors?.required">Email is required</span> 
+                        <span *ngIf="loginForm.get('email')?.errors?.email">Email doesn't have a correct format</span>   
+                    </span>
+                 </div>
+                <!-- Password -->
+                <div>
+                    <label for="password">Contraseña</label>
+                    <input type="password" [formControl]="password" class="form-control" placeholder="User Password">
+                    <span style="color: red;" *ngIf="loginForm.get('password')?.errors && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)">
+                        <span *ngIf="loginForm.get('password')?.errors?.required">User pwd is required</span>    
+                    </span>
+                    <div class="row">
+                        <h3 style="color: red;" *ngIf="loginState$.error && (bSubmitted)">
+                            Invalid user or password
+                        </h3>
+                    </div>
+                </div>
+                <!-- Sign in button -->
+                <button class="btn btn-primary my-4" type="submit" [disabled]="!loginForm.valid">Sign in</button>
+            </form>    
+        </div> 
+        <div class="row justify-content-center registrarse">
+            <p>¿No tienes una cuenta aun en Surefugio?</p>
+            <a href="" [routerLink]="['/registrarse']" >Registrate</a>
+        </div> 
+    </div>
+
 </div>

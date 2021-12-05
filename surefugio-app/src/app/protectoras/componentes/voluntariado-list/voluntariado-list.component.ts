@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducer';
 import { Protectora } from 'src/app/shared/models/protectora.model';
+import { User } from 'src/app/shared/models/user.model';
 import { getAllProtectoras } from '../../actions';
 
 @Component({
@@ -21,6 +22,7 @@ export class VoluntariadoListComponent implements OnInit {
     
     this.store.select('protectorasApp').subscribe(protectoras => this.protectoras = protectoras.protectoras.filter(item => item.req_voluntario))
     this.store.dispatch(getAllProtectoras());
+
   }
 
 }

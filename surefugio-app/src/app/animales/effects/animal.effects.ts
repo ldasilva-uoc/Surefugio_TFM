@@ -66,6 +66,17 @@ export class AnimalesEffects{
         )
     )
 
+    editAnimalSuccess$ = createEffect(
+        () =>
+        this.actions$.pipe(
+            ofType(editAnimalSuccess),
+            tap(() => 
+                this.router.navigate(['/misanimales'])
+            )
+            ),
+            {dispatch:false}
+    );
+
     deleteAnimal$ = createEffect(() => 
         this.actions$.pipe(
             ofType(deleteAnimal),

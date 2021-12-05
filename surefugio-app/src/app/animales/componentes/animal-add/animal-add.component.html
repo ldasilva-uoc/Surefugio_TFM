@@ -1,161 +1,171 @@
-<p>Anadir animal</p>
 
-<form [formGroup]="animalForm" (ngSubmit)=" addAnimal()">    
+<div class="">
 
-    <div class="">
-        <label for="nombre" class="form-label" >Nombre</label>
-        <input type="text" class="form-control" id="nombre"  type="text" [formControl]="nombre" placeholder="nombre" required>
-        <span style="color: red;" *ngIf="animalForm.get('nombre')?.errors && (animalForm.get('nombre')?.touched || animalForm.get('nombre')?.dirty)">
-            <span *ngIf="animalForm.get('nombre')?.errors?.required">Campo obligatorio</span> 
-        </span>
+    <div class="container   formulario row justify-content-center">
+        <h1 class="text-center">Añadir animal</h1>
+        <div>    
+            <form [formGroup]="animalForm" (ngSubmit)=" addAnimal()">    
+
+                <div class="">
+                    <label for="nombre" class="form-label" >Nombre</label>
+                    <input type="text" class="form-control" id="nombre"  type="text" [formControl]="nombre" placeholder="nombre" required>
+                    <span style="color: red;" *ngIf="animalForm.get('nombre')?.errors && (animalForm.get('nombre')?.touched || animalForm.get('nombre')?.dirty)">
+                        <span *ngIf="animalForm.get('nombre')?.errors?.required">Campo obligatorio</span> 
+                    </span>
+                </div>
+            
+                <div class="">
+                    <label for="especie" class="form-label" >Especie</label>
+                    <select class="form-select" aria-label="Especie" [formControl]="especie">
+                        <option selected>Escoge una especie</option>
+                        <option value="gato">Gato</option>
+                        <option value="perro">Perro</option>
+                        <option value="roedor">Roedor</option>
+                      </select>
+                    <span style="color: red;" *ngIf="animalForm.get('especie')?.errors && (animalForm.get('especie')?.touched || animalForm.get('especie')?.dirty)">
+                        <span *ngIf="animalForm.get('especie')?.errors?.required">Campo obligatorio</span> 
+                    </span>
+                </div>
+             
+                <div class="">
+                    <label for="imagen" class="form-label" >Imagen</label>
+                    <input class="form-control" type="file" id="imagen" [formControl]="imagen">
+                </div>
+            
+                <div class="">
+                    <label for="descripcion" class="form-label" >Historia</label>
+                    <textarea type="text" class="form-control" id="descripcion"  type="text" [formControl]="descripcion" placeholder="descripcion"></textarea>
+                </div>
+            
+                <div class="">
+                    <label for="tamano" class="form-label" >Tamaño</label>
+                    <select class="form-select" aria-label="tamano" [formControl]="tamano">
+                        <option selected>Escoge tamaño</option>
+                        <option value="grande">Grande</option>
+                        <option value="mediano">Mediano</option>
+                        <option value="pequeno">Pequeno</option>
+                      </select>
+                    <span style="color: red;" *ngIf="animalForm.get('tamano')?.errors && (animalForm.get('tamano')?.touched || animalForm.get('tamano')?.dirty)">
+                        <span *ngIf="animalForm.get('tamano')?.errors?.required">Campo obligatorio</span> 
+                    </span>
+                </div>
+            
+                <div class="">
+                    <label for="sexo" class="form-label" >Sexo</label>
+                    <select class="form-select" aria-label="sexo" [formControl]="sexo">
+                        <option selected>Escoge sexo</option>
+                        <option value="macho">macho</option>
+                        <option value="hembra">hembra</option>
+            
+                      </select>
+                    <span style="color: red;" *ngIf="animalForm.get('sexo')?.errors && (animalForm.get('sexo')?.touched || animalForm.get('sexo')?.dirty)">
+                        <span *ngIf="animalForm.get('sexo')?.errors?.required">Campo obligatorio</span> 
+                    </span>
+                </div>
+            
+                <div class="">
+                    <label for="pais" class="form-label" >Pais</label>
+                    <input type="text" class="form-control" id="pais"  type="text" [formControl]="pais" placeholder="pais" required>
+                    <span style="color: red;" *ngIf="animalForm.get('pais')?.errors && (animalForm.get('pais')?.touched || animalForm.get('pais')?.dirty)">
+                        <span *ngIf="animalForm.get('pais')?.errors?.required">Campo obligatorio</span> 
+                    </span>
+                </div>
+            
+                <div class="">
+                    <label for="ciudad" class="form-label" >Ciudad</label>
+                    <input type="text" class="form-control" id="ciudad"  type="text" [formControl]="ciudad" placeholder="ciudad" required>
+                    <span style="color: red;" *ngIf="animalForm.get('ciudad')?.errors && (animalForm.get('ciudad')?.touched || animalForm.get('ciudad')?.dirty)">
+                        <span *ngIf="animalForm.get('ciudad')?.errors?.required">Campo obligatorio</span> 
+                    </span>
+                </div>
+            
+                <div class="">
+                    <label for="provincia" class="form-label" >Provincia</label>
+                    <input type="text" class="form-control" id="provincia"  type="text" [formControl]="provincia" placeholder="provincia" required>
+                    <span style="color: red;" *ngIf="animalForm.get('provincia')?.errors && (animalForm.get('provincia')?.touched || animalForm.get('provincia')?.dirty)">
+                        <span *ngIf="animalForm.get('provincia')?.errors?.required">Campo obligatorio</span> 
+                    </span>
+                </div>
+            
+                <div class="">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [formControl]="adopcion">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">¿Esta en adopción?</label> 
+            
+                
+                </div>
+            
+                <div class="">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [formControl]="acogida">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">¿Esta en acogida?</label> 
+            
+                  
+                </div>
+            
+                <div class="">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [formControl]="urgente">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">¿Es un caso urgente?</label> 
+            
+                  
+                </div>
+            
+                <div class="">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [formControl]="vacunado">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Vacunado</label> 
+            
+                
+                </div>
+            
+                
+                <div class="">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [formControl]="desparasitado">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Desparasitado</label> 
+            
+                  
+                </div>
+            
+                    
+                <div class="">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [formControl]="esterilizado">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Esterilizado</label> 
+            
+                </div>
+            
+                <div class="">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [formControl]="microchip">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Microchip</label> 
+            
+                
+                </div>
+            
+                <div class="">
+                    <label for="tasa_adopcion" class="form-label" >¿Tiene tasa de adopción?</label>
+                    <select class="form-select" aria-label="tasa_adopcion" [formControl]="tasa_adopcion">
+                        <option selected>Escoge tasa</option>
+                        <option value="gratis">gratis</option>
+                        <option value="consultar">consultar</option>
+                        <option value="tasa">tasa</option>
+                      </select>
+            
+                </div>
+            
+                <div class="">
+                    <label for="tasa" class="form-label" >Tasa</label>
+                    <input type="text" class="form-control" id="tasa"  type="text" [formControl]="tasa" placeholder="tasa">
+                </div>
+            
+                <div class="">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [formControl]="envio">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">¿Hay posibilidad de envío?</label> 
+                </div>
+            
+            
+             
+                <button class="btn btn-primary my-4" type="submit" [disabled]="!animalForm.valid">Guardar</button>
+                <button class="btn btn-warning my-4" [routerLink]="['/misanimales']">Cancelar</button>
+            </form>    
+        </div> 
     </div>
 
-    <div class="">
-        <label for="especie" class="form-label" >Especie</label>
-        <select class="form-select" aria-label="Especie" [formControl]="especie">
-            <option selected>Escoge una especie</option>
-            <option value="gato">Gato</option>
-            <option value="perro">Perro</option>
-            <option value="roedor">Roedor</option>
-          </select>
-        <span style="color: red;" *ngIf="animalForm.get('especie')?.errors && (animalForm.get('especie')?.touched || animalForm.get('especie')?.dirty)">
-            <span *ngIf="animalForm.get('especie')?.errors?.required">Campo obligatorio</span> 
-        </span>
-    </div>
- 
-    <div class="">
-        <label for="imagen" class="form-label" >Imagen</label>
-        <input class="form-control" type="file" id="imagen" [formControl]="imagen">
-    </div>
-
-    <div class="">
-        <label for="descripcion" class="form-label" >Historia</label>
-        <textarea type="text" class="form-control" id="descripcion"  type="text" [formControl]="descripcion" placeholder="descripcion"></textarea>
-    </div>
-
-    <div class="">
-        <label for="tamano" class="form-label" >Tamaño</label>
-        <select class="form-select" aria-label="tamano" [formControl]="tamano">
-            <option selected>Escoge tamaño</option>
-            <option value="grande">Grande</option>
-            <option value="mediano">Mediano</option>
-            <option value="pequeno">Pequeno</option>
-          </select>
-        <span style="color: red;" *ngIf="animalForm.get('tamano')?.errors && (animalForm.get('tamano')?.touched || animalForm.get('tamano')?.dirty)">
-            <span *ngIf="animalForm.get('tamano')?.errors?.required">Campo obligatorio</span> 
-        </span>
-    </div>
-
-    <div class="">
-        <label for="sexo" class="form-label" >Sexo</label>
-        <select class="form-select" aria-label="sexo" [formControl]="sexo">
-            <option selected>Escoge sexo</option>
-            <option value="macho">macho</option>
-            <option value="hembra">hembra</option>
-
-          </select>
-        <span style="color: red;" *ngIf="animalForm.get('sexo')?.errors && (animalForm.get('sexo')?.touched || animalForm.get('sexo')?.dirty)">
-            <span *ngIf="animalForm.get('sexo')?.errors?.required">Campo obligatorio</span> 
-        </span>
-    </div>
-
-    <div class="">
-        <label for="pais" class="form-label" >Pais</label>
-        <input type="text" class="form-control" id="pais"  type="text" [formControl]="pais" placeholder="pais" required>
-        <span style="color: red;" *ngIf="animalForm.get('pais')?.errors && (animalForm.get('pais')?.touched || animalForm.get('pais')?.dirty)">
-            <span *ngIf="animalForm.get('pais')?.errors?.required">Campo obligatorio</span> 
-        </span>
-    </div>
-
-    <div class="">
-        <label for="ciudad" class="form-label" >Ciudad</label>
-        <input type="text" class="form-control" id="ciudad"  type="text" [formControl]="ciudad" placeholder="ciudad" required>
-        <span style="color: red;" *ngIf="animalForm.get('ciudad')?.errors && (animalForm.get('ciudad')?.touched || animalForm.get('ciudad')?.dirty)">
-            <span *ngIf="animalForm.get('ciudad')?.errors?.required">Campo obligatorio</span> 
-        </span>
-    </div>
-
-    <div class="">
-        <label for="provincia" class="form-label" >Provincia</label>
-        <input type="text" class="form-control" id="provincia"  type="text" [formControl]="provincia" placeholder="provincia" required>
-        <span style="color: red;" *ngIf="animalForm.get('provincia')?.errors && (animalForm.get('provincia')?.touched || animalForm.get('provincia')?.dirty)">
-            <span *ngIf="animalForm.get('provincia')?.errors?.required">Campo obligatorio</span> 
-        </span>
-    </div>
-
-    <div class="">
-        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [formControl]="adopcion">
-        <label class="form-check-label" for="flexSwitchCheckDefault">¿Esta en adopción?</label> 
-
-    
-    </div>
-
-    <div class="">
-        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [formControl]="acogida">
-        <label class="form-check-label" for="flexSwitchCheckDefault">¿Esta en acogida?</label> 
-
-      
-    </div>
-
-    <div class="">
-        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [formControl]="urgente">
-        <label class="form-check-label" for="flexSwitchCheckDefault">¿Es un caso urgente?</label> 
-
-      
-    </div>
-
-    <div class="">
-        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [formControl]="vacunado">
-        <label class="form-check-label" for="flexSwitchCheckDefault">Vacunado</label> 
-
-    
-    </div>
-
-    
-    <div class="">
-        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [formControl]="desparasitado">
-        <label class="form-check-label" for="flexSwitchCheckDefault">Desparasitado</label> 
-
-      
-    </div>
-
-        
-    <div class="">
-        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [formControl]="esterilizado">
-        <label class="form-check-label" for="flexSwitchCheckDefault">Esterilizado</label> 
-
-    </div>
-
-    <div class="">
-        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [formControl]="microchip">
-        <label class="form-check-label" for="flexSwitchCheckDefault">Microchip</label> 
-
-    
-    </div>
-
-    <div class="">
-        <label for="tasa_adopcion" class="form-label" >¿Tiene tasa de adopción?</label>
-        <select class="form-select" aria-label="tasa_adopcion" [formControl]="tasa_adopcion">
-            <option selected>Escoge tasa</option>
-            <option value="gratis">gratis</option>
-            <option value="consultar">consultar</option>
-            <option value="tasa">tasa</option>
-          </select>
-
-    </div>
-
-    <div class="">
-        <label for="tasa" class="form-label" >Tasa</label>
-        <input type="text" class="form-control" id="tasa"  type="text" [formControl]="tasa" placeholder="tasa">
-    </div>
-
-    <div class="">
-        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [formControl]="envio">
-        <label class="form-check-label" for="flexSwitchCheckDefault">¿Hay posibilidad de envío?</label> 
-    </div>
+</div>
 
 
- 
-    <button class="btn btn-primary my-4" type="submit" [disabled]="!animalForm.valid">Guardar</button>
-    <button class="btn btn-warning my-4" [routerLink]="['/misanimales']">Cancelar</button>
-</form>    

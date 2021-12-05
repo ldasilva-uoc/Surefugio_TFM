@@ -17,7 +17,6 @@ export class UserEffects {
     this.actions$.pipe(
       ofType(userAction.login),
       exhaustMap(({cred}) =>{
-
         return this.authService.login(cred).pipe(
         map((auth) =>{
           
@@ -37,7 +36,7 @@ export class UserEffects {
       this.actions$.pipe(
         ofType(userAction.loginSuccess),
         tap(() =>{
-          this.router.navigate(['/portada'])
+         this.router.navigate(['/portada'])
         }
 
           
@@ -45,6 +44,8 @@ export class UserEffects {
       ),
     { dispatch: false }
   );
+
+
 
   logoutUser$ = createEffect(() =>
     this.actions$.pipe(

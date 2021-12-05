@@ -1,0 +1,21 @@
+/* Stackoverflow preview fix, please ignore */
+.navbar-collapse {
+  justify-content: end;
+}
+.navbar {
+  padding: 12px;
+}
+
+.navbar-brand {
+  padding-left: 8px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu,
+.dropdownmenu {
+  justify-content: end !important;
+}

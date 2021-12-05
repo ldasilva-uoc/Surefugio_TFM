@@ -1,11 +1,93 @@
-<h1>{{protectora?.nombre}}</h1>
 
-<h2>Animales</h2>
-<p>Se muesra {{animales.length}} animales</p>
-<div class="list list_animales">
-    <div *ngFor="let animal of animales" class="card" [routerLink]="['/animal', animal.id]">
-        <div class="card-body">
-          {{animal.nombre}} | {{animal.especie}}
-        </div>
+<div class="fondo">
+
+  <div class="container" >
+ 
+  <div class="row justify-content-center">
+      <div class="header d-flex justify-content-between align-items-center">
+          <div>
+              <h1>{{protectora?.nombre}}</h1>
+              <p>{{protectora?.ciudad}}, {{protectora?.pais}}</p>         
+          </div>
+          <div class="d-flex flex-column align-items-center" *ngIf="protectora?.voluntariado">
+              <button class="btn btn-primary" type="submit">Quiero ser voluntario!</button>
+          </div>
       </div>
+  
+      <div class="body row justify-content-between" >
+          <div class="col-md-4 cuadrado">
+              <img src="../../../../assets/imagenes/refugio.jpg" class="card-img-buton" alt="...">
+              <div>
+                <a href="protectora?.web"> web </a>
+                <a href="protectora?.facebook"> facebook </a>
+                <a href="protectora?.instagram">instagram</a>
+              </div>
+          </div>
+          <div class="col-md-8 row justify-content-between">
+              <div class="cuadrado col-12">
+                  <h3>Mis datos</h3>
+                  <ul>
+                      <li class="row justify-content-between">
+                          <p class="col-6">Teléfono</p>
+                          <p class="col-6 right_text">{{protectora?.telefono}}</p>
+                      </li>
+                      <li class="row justify-content-between">
+                          <p class="col-6">Búsca voluntarios?</p>
+                          <p class="col-6 right_text">{{protectora?.voluntariado}}</p>
+                      </li>
+                      <li class="row justify-content-between">
+                          <p class="">Requisitos para voluntariado</p>
+                          <p class="">{{protectora?.req_voluntario}}</p>
+                      </li>
+                  </ul>
+              </div>
+  
+              <div class="col-12 cuadrado">
+                  <h3>Descripción</h3>
+                  <p>
+                    {{protectora?.historia}}
+                  </p>
+              </div>
+  
+          </div>
+              
+  
+          <div class="col-12 historia">
+
+            <div class="list list_animales">
+              <div>
+                <h2>Animales</h2>
+                <p>{{animales.length}} animales</p>
+            
+                <div class="list list_animales d-flex flex-wrap" style=" gap: 12px;">
+                  <div class="card" style="width: 18rem;" *ngFor="let animal of animales" [routerLink]="['/animal', animal.id]">
+               
+                    <div class="card-body">
+                      <h5 class="card-title">{{animal.nombre}}</h5>
+                      <p class="card-text">{{animal.especie}}</p>
+                    </div>
+                    <img src="../../../../assets/imagenes/Perro.png" class="card-img-buton" alt="...">
+                    <div class="card-body" *ngIf="animal.urgente">
+                      Urgente
+                    </div>
+                    <div class="card-body" *ngIf="!animal.urgente && animal.adopcion && !animal.acogida">
+                      Adopcion
+                    </div>
+                    <div class="card-body" *ngIf="!animal.urgente && animal.adopcion && animal.acogida">
+                      Acogida
+                    </div>
+                   
+                  </div>
+                </div>
+            
+            
+              </div>
+            </div>
+          </div>
+      </div>
+  
+  </div>
+
+  </div>
+
 </div>

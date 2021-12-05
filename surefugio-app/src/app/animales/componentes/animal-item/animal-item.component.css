@@ -1,0 +1,37 @@
+.fondo {
+}
+.header {
+  margin-bottom: 1%;
+}
+.body {
+  width: 100%;
+}
+
+.container {
+  padding-top: 3rem !important;
+}
+
+.cuadrado {
+  padding: 0;
+}
+
+img {
+  width: 100%;
+}
+
+.estado {
+  border: 1px solid black;
+  text-align: center;
+}
+
+ul {
+  padding: 0;
+}
+
+.right_text {
+  text-align: right;
+}
+
+.historia {
+  margin-top: 2%;
+}

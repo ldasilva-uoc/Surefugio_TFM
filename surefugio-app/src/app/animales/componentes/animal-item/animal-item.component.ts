@@ -12,6 +12,7 @@ import { Animal } from 'src/app/shared/models/animal.model';
 export class AnimalItemComponent implements OnInit {
 
   animal!: Animal |undefined;
+  protectora_nom: string|undefined;
 
   constructor(private route: ActivatedRoute, private store:Store<AppState>) {
     this.route.params.subscribe(params => {
@@ -24,7 +25,13 @@ export class AnimalItemComponent implements OnInit {
         this.animal = animal;
         console.log(this.animal)
       });
+      this.store.select('protectorasApp').subscribe(protectoras => {
+        this.protectora_nom = protectoras.protectoras.find(x => x.id === this.animal?.protectora_id)?.nombre;
+     
+      });
     })
+
+
    }
 
   ngOnInit(): void {

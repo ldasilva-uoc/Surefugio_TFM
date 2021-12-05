@@ -20,6 +20,8 @@ import { AuthInterceptor } from './shared/interceptor/auth.interceptor';
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,8 +42,7 @@ import { AuthInterceptor } from './shared/interceptor/auth.interceptor';
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly:environment.production
-    })
- 
+    }),
   ],
   providers: [
     {

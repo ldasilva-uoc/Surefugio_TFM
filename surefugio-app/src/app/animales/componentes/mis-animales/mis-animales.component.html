@@ -1,18 +1,42 @@
-<p>mis-animales works!</p>
-<h1>Mis animales</h1>
+<div class="container" style="margin-top: 3%;">
 
-<p>Se muestra {{animales.length}} animales</p>
-<div>
-  <button type="button" class="btn btn-primary" [routerLink]="['/protectora/animal/add']">Añadir</button>
-</div>
-<div class="list list_animales">
-    <div *ngFor="let animal of animales" class="card" [routerLink]="['/animal', animal.id]">
+  <div>
+    <h1>Mis animales</h1>
+    <p>{{animales.length}} animales</p>
+
+    <div>
+      <button type="button" class="btn btn-primary" [routerLink]="['/protectora/animal/add']">Añadir</button>
+    </div>
+
+    <div class="list list_animales d-flex flex-wrap" style=" gap: 12px;">
+      <div class="card" style="width: 18rem;" *ngFor="let animal of animales" [routerLink]="['/animal', animal.id]">
+   
         <div class="card-body">
-          {{animal.nombre}} | {{animal.especie}}
+          <h5 class="card-title">{{animal.nombre}}</h5>
+          <p class="card-text">{{animal.especie}}</p>
+          <p class="card-text">{{animal.pais}}, {{animal.ciudad}}</p>
+          <div>
+            <button type="button" class="btn btn-primary" [routerLink]="['/protectora/animal/edit', animal.id]">Editar</button>
+            <button type="button" class="btn btn-danger" (click)="deleteAnimal(animal)">Eliminar</button>
+          </div>
         </div>
-        <div>
-          <button type="button" class="btn btn-primary" [routerLink]="['/protectora/animal/edit', animal.id]">Editar</button>
-          <button type="button" class="btn btn-danger" (click)="deleteAnimal(animal)">Eliminar</button>
+        <img src="../../../../assets/imagenes/Perro.png" class="card-img-buton" alt="...">
+        <div class="card-body" *ngIf="animal.urgente">
+          Urgente
         </div>
+        <div class="card-body" *ngIf="!animal.urgente && animal.adopcion && !animal.acogida">
+          Adopcion
+        </div>
+        <div class="card-body" *ngIf="!animal.urgente && animal.adopcion && animal.acogida">
+          Acogida
+        </div>
+       
       </div>
+    </div>
+
+
+  </div>
+
+
+  
 </div>

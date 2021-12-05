@@ -14,6 +14,7 @@ import { LoginComponent } from './user/componentes/login/login.component';
 import { SigninComponent } from './user/componentes/signin/signin.component';
 
 const routes: Routes = [
+  {path: '', component:PortadaComponent},
   {path: 'animales/list', component:AnimalListComponent},
   {path: 'animal/:id', component:AnimalItemComponent},
   {path: 'protectoras/list', component:ProtectoraListComponent},
