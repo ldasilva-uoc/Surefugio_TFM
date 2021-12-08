@@ -19,7 +19,7 @@ class CreateProtectorasTable extends Migration
             $table->string('nombre');
             $table->string('imagen')->nullable(); //para blob
             $table->boolean('voluntariado');
-            $table->text('req_voluntario')->nullable();
+            $table->text('req_voluntariado')->nullable();
             $table->string('telefono');
             $table->string('web')->nullable();
             $table->string('facebook')->nullable();

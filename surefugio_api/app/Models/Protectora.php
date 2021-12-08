@@ -22,5 +22,6 @@ class Protectora extends Model
         'instagram',
         'historia',
         'imagen',
+        'user_id'
     ];
 }

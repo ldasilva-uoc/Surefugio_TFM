@@ -49,6 +49,7 @@ export class TokenService {
 
   // Remove token
   removeToken(){
+    console.log("eliminando token")
     localStorage.removeItem('auth_token');
   }
 }

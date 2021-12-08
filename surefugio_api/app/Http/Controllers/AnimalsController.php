@@ -27,6 +27,7 @@ class AnimalsController extends Controller
         $validator = Validator::make($request->all(), [
             'nombre' => 'required|string',
             'imagen' => 'image|dimensions:min_width=200,min_height=200',
+            'edad' => 'required',
             'especie' => 'required',
             'sexo' => 'required',
             'pais'=> 'required',
@@ -52,7 +53,7 @@ class AnimalsController extends Controller
         $path = '';
 
         if(!empty($request->imagen)){
-            $path = $request->imagen->store('animales');
+            $path = $request->imagen->store('public/animales');
         }
         $animal->imagen = $path;
         $protectora = Protectora::where('user_id',Auth::id())->first(); 

@@ -15,9 +15,9 @@ class ParticularController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nombre' => 'required|string|min:6',
+            'nombre' => 'required|string',
             'imagen' => 'image|dimensions:min_width=200,min_height=200',
-            'apellido' => 'required',
+            'apellido' => 'required|string',
             'telefono' => 'required',
             'pais'=> 'required',
             'ciudad'=> 'required',
@@ -33,11 +33,10 @@ class ParticularController extends Controller
         $path = '';
 
         if(!empty($request->imagen)){
-            $path = $request->imagen->store('particulars');
+            $path = $request->imagen->store('public/particular');
         }
         $particular->imagen = $path;
 
-        $particular->user_id = Auth::id();
         $particular->save();
         return response()->json([
             'message' => 'particular successfully registered',
@@ -47,7 +46,7 @@ class ParticularController extends Controller
 
     public function particular($id)
     {
-            $particular = particular::findOrFail($id);
+            $particular = Particular::findOrFail($id);
             if($particular->user_id != Auth::id())
             {
                 return response()->json([
@@ -94,9 +93,17 @@ class ParticularController extends Controller
             'particular' => $particular,
         ]);
 
-     
 
+    }
 
+    
+    public function particularbyUser()
+    {
+        $particular =  Particular::where('user_id',Auth::id())->get();
+        return response()->json([
+            'particular' => $particular,
+        ]);
+        
     }
 
 }

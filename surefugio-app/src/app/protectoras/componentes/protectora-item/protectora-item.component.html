@@ -10,13 +10,14 @@
               <p>{{protectora?.ciudad}}, {{protectora?.pais}}</p>         
           </div>
           <div class="d-flex flex-column align-items-center" *ngIf="protectora?.voluntariado">
-              <button class="btn btn-primary" type="submit">Quiero ser voluntario!</button>
+              <button class="btn btn-primary" type="submit" (click)= "voluntariado()" *ngIf="islogin && !isProtectora" >Quiero ser voluntario!</button>
           </div>
       </div>
   
       <div class="body row justify-content-between" >
           <div class="col-md-4 cuadrado">
-              <img src="../../../../assets/imagenes/refugio.jpg" class="card-img-buton" alt="...">
+              <img src="http://127.0.0.1:8000/storage/{{protectora?.imagen}}" class="card-img-buton" alt="..." *ngIf="protectora?.imagen">
+              <img src="../../../../assets/imagenes/refugio.jpg" class="card-img-buton" alt="..." *ngIf="!protectora?.imagen">
               <div>
                 <a href="protectora?.web"> web </a>
                 <a href="protectora?.facebook"> facebook </a>
@@ -37,7 +38,7 @@
                       </li>
                       <li class="row justify-content-between">
                           <p class="">Requisitos para voluntariado</p>
-                          <p class="">{{protectora?.req_voluntario}}</p>
+                          <p class="">{{protectora?.req_voluntariado}}</p>
                       </li>
                   </ul>
               </div>
@@ -91,3 +92,4 @@
   </div>
 
 </div>
+

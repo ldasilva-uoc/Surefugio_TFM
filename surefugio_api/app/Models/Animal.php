@@ -15,7 +15,7 @@ class Animal extends Model
         'especie',
         'tamaño',
         'imagen',
-        'fecha_nacimiento',
+        'edad',
         'descripcion',
         'sexo',
         'pais',

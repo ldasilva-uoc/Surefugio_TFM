@@ -24,18 +24,7 @@ export class AnimalListComponent implements OnInit {
   ngOnInit(): void {
     this.store.select('animalesApp').subscribe(animales => {
       this.animales = animales.animales
-      this.animales.map(animal => {
-        if(animal.especie === "gato")
-        {
-          console.log(animal.especie)
-        
-        } 
-        else 
-        {
-          
-        }
-  
-    })
+
     });
 
     this.store.select('UserApp').subscribe(login => {

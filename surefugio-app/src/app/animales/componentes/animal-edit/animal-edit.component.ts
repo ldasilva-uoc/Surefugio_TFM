@@ -18,7 +18,7 @@ export class AnimalEditComponent implements OnInit {
   public nombre: FormControl;
   public especie: FormControl;
   public imagen: FormControl;
-  public fecha_nacimiento: FormControl;
+  public edad: FormControl;
   public descripcion: FormControl;
   public sexo: FormControl;
   public tamano: FormControl;
@@ -57,7 +57,7 @@ export class AnimalEditComponent implements OnInit {
       this.nombre = new FormControl(this.animal?.nombre),
       this.especie = new FormControl(this.animal?.especie),
       this.imagen = new FormControl(this.animal?.imagen),
-      this.fecha_nacimiento = new FormControl(this.animal?.fecha_nacimiento),
+      this.edad = new FormControl(this.animal?.edad),
       this.descripcion = new FormControl(this.animal?.descripcion),
       this.sexo = new FormControl(this.animal?.sexo),
       this.pais = new FormControl(this.animal?.pais),
@@ -79,7 +79,7 @@ export class AnimalEditComponent implements OnInit {
         nombre: this.nombre,
         especie: this.especie,
         imagen: this.imagen,
-        fecha_nacimiento: this.fecha_nacimiento,
+        edad: this.edad,
         descripcion: this.descripcion,
         sexo: this.sexo,
         pais: this.pais,
@@ -107,7 +107,7 @@ export class AnimalEditComponent implements OnInit {
       nombre: this.nombre.value,
       especie: this.especie.value,
       //imagen: this.imagen.value,
-      fecha_nacimiento: this.fecha_nacimiento.value,
+      edad: this.edad.value,
       descripcion: this.descripcion.value,
       sexo: this.sexo.value,
       pais: this.pais.value,
@@ -125,8 +125,6 @@ export class AnimalEditComponent implements OnInit {
       envio: this.envio.value,
       tamaño: this.tamano.value,
     }
-
-    console.log(animal);
 
     this.store.dispatch(AnimalAction.editAnimal({animal}));
   }

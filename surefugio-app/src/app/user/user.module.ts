@@ -5,10 +5,13 @@ import { SigninComponent } from './componentes/signin/signin.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { SignupProtectoraComponent } from './componentes/signup-protectora/signup-protectora.component';
+import { SignupParticularComponent } from './componentes/signup-particular/signup-particular.component';
+
 
 
 @NgModule({
-  declarations: [LoginComponent,SigninComponent],
+  declarations: [LoginComponent,SigninComponent, SignupProtectoraComponent, SignupParticularComponent],
   imports: [
     CommonModule,
     RouterModule,

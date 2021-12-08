@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProtectorasController;
 use App\Http\Controllers\AnimalsController;
 use App\Http\Controllers\ParticularController;
+use App\Http\Controllers\FavoritosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,19 @@ Route::group([
     Route::get('/protectora/animal/deleter/{id}', [AnimalsController::class, 'deleteAnimal']);
     Route::post('/protectora/animal/edit/{id}', [AnimalsController::class, 'editAnimal']);
     Route::get('/protectora', [ProtectorasController::class, 'protectorabyUser']);
+    Route::get('/particular', [ParticularController::class, 'particularbyUser']);
+
+
+    Route::post('/particular/favorito/protectora/add/{id}', [FavoritosController::class, 'addFavprotectora']);
+    Route::get('/particular/favorito/protectora/deleter/{id}', [FavoritosController::class, 'deleteFavprotectora']);
+    Route::get('/particular/favorito/protectora', [FavoritosController::class, 'getFavoritosProtectoras']);
+
+
+    
+    Route::post('/particular/favorito/animal/add/{id}', [FavoritosController::class, 'addFavAnimal']);
+    Route::get('/particular/favorito/animal/deleter/{id}', [FavoritosController::class, 'deleteFavAnimal']);
+    Route::get('/particular/favorito/animal', [FavoritosController::class, 'getFavoritosAnimal']);
+
     //mis favoritos animales (PARTICULAR)
     //mis favoritos protectoras (PARTICULAR)
     //añadir a favoritos protectora (PARTICULAR)
@@ -57,5 +71,21 @@ Route::group([
     Route::get('/voluntariado', [ProtectorasController::class, 'voluntariado_protectora']); 
     Route::get('/animales', [AnimalsController::class, 'index']); 
     Route::get('/animal/{id}', [AnimalsController::class, 'animal']); 
+    Route::get('/storage/{filename}', function ($filename)
+{
+    $path = storage_path('public/' . $filename);
+
+    if (!File::exists($path)) {
+        abort(404);
+    }
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
+});
 });
 

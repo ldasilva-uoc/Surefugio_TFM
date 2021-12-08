@@ -8,7 +8,7 @@
     <p>{{animales.length}} animales</p>
 
     <div class="list list_animales d-flex flex-wrap" style=" gap: 12px;">
-      <div class="card" style="width: 18rem;" *ngFor="let animal of animales" [routerLink]="['/animal', animal.id]">
+      <div class="card" style="width: 13rem;" *ngFor="let animal of animales" [routerLink]="['/animal', animal.id]">
    
         <div class="card-body">
           <h5 class="card-title">{{animal.nombre}}</h5>

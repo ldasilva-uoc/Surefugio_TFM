@@ -2,8 +2,8 @@ export class Animal{
     public id?:number;
     public nombre:string;
     public especie:string;
-    public imagen?:string;
-    public fecha_nacimiento?:Date;
+    public imagen?: any;
+    public edad:string;
     public descripcion?:string;
     public tamaño:string
     public sexo:string;

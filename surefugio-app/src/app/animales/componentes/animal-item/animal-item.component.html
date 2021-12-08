@@ -13,8 +13,8 @@
                 </div>
                 
             </div>
-            <div class="d-flex flex-column align-items-center">
-                <button class="btn btn-primary" type="submit">Quiero adoptarlo!</button>
+            <div class="d-flex flex-column align-items-center" *ngIf="islogin && !isProtectora">
+                <button class="btn btn-primary" type="submit" >Quiero adoptarlo!</button>
                 <a href="">Quiero acoger</a>
             </div>
         </div>
@@ -43,7 +43,7 @@
                         </li>
                         <li class="row justify-content-between">
                             <p class="col-6">Años</p>
-                            <p class="col-6 right_text">{{animal?.fecha_nacimiento}}</p>
+                            <p class="col-6 right_text">{{animal?.edad}}</p>
                         </li>
                         <li class="row justify-content-between">
                             <p class="col-6">Sexo</p>

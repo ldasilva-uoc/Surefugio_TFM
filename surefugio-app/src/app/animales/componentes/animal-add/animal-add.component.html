@@ -26,11 +26,28 @@
                         <span *ngIf="animalForm.get('especie')?.errors?.required">Campo obligatorio</span> 
                     </span>
                 </div>
+
+                <div class="">
+                    <label for="edad" class="form-label" >edad</label>
+                    <select class="form-select" aria-label="edad" [formControl]="edad">
+                        <option selected>Escoge una edad</option>
+                        <option value="< 1 año">< 1 año</option>
+                        <option value="< - 5 año">< - 5 año</option>
+                        <option value="5 - 10 año">5 - 10 año</option>
+                        <option value="> 10 año">> 10 año</option>
+                      </select>
+                    <span style="color: red;" *ngIf="animalForm.get('edad')?.errors && (animalForm.get('edad')?.touched || animalForm.get('edad')?.dirty)">
+                        <span *ngIf="animalForm.get('edad')?.errors?.required">Campo obligatorio</span> 
+                    </span>
+                </div>
              
                 <div class="">
                     <label for="imagen" class="form-label" >Imagen</label>
                     <input class="form-control" type="file" id="imagen" [formControl]="imagen">
                 </div>
+
+
+            
             
                 <div class="">
                     <label for="descripcion" class="form-label" >Historia</label>
@@ -139,7 +156,7 @@
             
                 <div class="">
                     <label for="tasa_adopcion" class="form-label" >¿Tiene tasa de adopción?</label>
-                    <select class="form-select" aria-label="tasa_adopcion" [formControl]="tasa_adopcion">
+                    <select class="form-select" aria-label="tasa_adopcion" [formControl]="tasa_adopcion" (change)="fieldsChange($event.target.value)">
                         <option selected>Escoge tasa</option>
                         <option value="gratis">gratis</option>
                         <option value="consultar">consultar</option>
@@ -148,9 +165,9 @@
             
                 </div>
             
-                <div class="">
+                <div *ngIf="haveTasa">
                     <label for="tasa" class="form-label" >Tasa</label>
-                    <input type="text" class="form-control" id="tasa"  type="text" [formControl]="tasa" placeholder="tasa">
+                    <input type="text" class="form-control" id="tasa"  type="text" [formControl]="tasa" placeholder="Ej. 100">
                 </div>
             
                 <div class="">

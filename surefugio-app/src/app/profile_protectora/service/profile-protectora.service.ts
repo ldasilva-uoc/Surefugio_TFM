@@ -10,7 +10,7 @@ export class ProfileProtectoraService {
   constructor(private http: HttpClient) { }
 
   getprotectora(): Observable<any> {
-    console.log('service profile')
+    console.log('service profile protectora')
     return this.http.get('http://127.0.0.1:8000/api/auth/protectora');
   }
 

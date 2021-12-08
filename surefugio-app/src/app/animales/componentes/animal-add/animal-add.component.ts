@@ -16,7 +16,7 @@ export class AnimalAddComponent implements OnInit {
   public nombre: FormControl;
   public especie: FormControl;
   public imagen: FormControl;
-  public fecha_nacimiento: FormControl;
+  public edad: FormControl;
   public descripcion: FormControl;
   public sexo: FormControl;
   public tamano: FormControl;
@@ -38,36 +38,39 @@ export class AnimalAddComponent implements OnInit {
 
   public bSubmitted: boolean;
 
+  
+  public haveTasa: Boolean;
+
   constructor( private store:Store<AppState>, private formBuilder: FormBuilder) { }
+
 
   ngOnInit(): void {
     this.bSubmitted = false;
     this.nombre = new FormControl('', [Validators.required]);
     this.especie = new FormControl('', [Validators.required]);
     this.imagen = new FormControl('');
-    this.fecha_nacimiento = new FormControl('');
+    this.edad = new FormControl('');
     this.descripcion = new FormControl('');
     this.sexo  = new FormControl('', [Validators.required]);
     this.tamano  = new FormControl('', [Validators.required]);
     this.pais = new FormControl('', [Validators.required]);
     this.ciudad = new FormControl('', [Validators.required]);
     this.provincia = new FormControl('', [Validators.required]);
-    this.adopcion = new FormControl('');
-    this.acogida = new FormControl('');
-    this.urgente = new FormControl('');
-    this.vacunado = new FormControl('');
-    this.desparasitado = new FormControl('');
-    this.esterilizado = new FormControl('');
-    this.microchip = new FormControl('');
+    this.adopcion = new FormControl(false);
+    this.acogida = new FormControl(false);
+    this.urgente = new FormControl(false);
+    this.vacunado = new FormControl(false);
+    this.desparasitado = new FormControl(false);
+    this.esterilizado = new FormControl(false);
+    this.microchip = new FormControl(false);
     this.tasa_adopcion = new FormControl('', [Validators.required]);
     this.tasa = new FormControl('');
-    this.envio = new FormControl('', [Validators.required]);
-
+    this.envio = new FormControl(false);
     this.animalForm = this.formBuilder.group({
        nombre: this.nombre,
        especie: this.especie,
        imagen: this.imagen,
-       fecha_nacimiento: this.fecha_nacimiento,
+       edad: this.edad,
        descripcion: this.descripcion,
        sexo: this.sexo,
        pais: this.pais,
@@ -87,13 +90,26 @@ export class AnimalAddComponent implements OnInit {
     });
   }
 
+  fieldsChange(target:any):void {
+    if(target === "tasa")
+    {
+      this.haveTasa = true
+    }
+    else{
+      this.haveTasa = false
+    }
+
+
+  }
+
+
   public addAnimal(){
     this.bSubmitted = true;
     const animal: Animal = {
       nombre: this.nombre.value,
       especie: this.especie.value,
       //imagen: this.imagen.value,
-      fecha_nacimiento: this.fecha_nacimiento.value,
+      edad: this.edad.value,
       descripcion: this.descripcion.value,
       sexo: this.sexo.value,
       pais: this.pais.value,

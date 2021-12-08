@@ -14,14 +14,14 @@ export class MisAnimalesComponent implements OnInit {
 
 
   animales: Animal[];
-  id_protectora$: number;
+  id_protectora$: number|undefined;
 
 
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.store.select('profileProtectoraApp').subscribe(protectora => {
-      this.id_protectora$ = protectora.protectora.id;
+      this.id_protectora$ = protectora.protectora?.id;
       console.log(protectora.protectora);
       this.store.select('animalesApp').subscribe(animales => {
         this.animales = animales.animales.filter(animal => animal.protectora_id === this.id_protectora$);  

@@ -19,7 +19,7 @@ class CreateAnimalsTable extends Migration
             $table->string('nombre');
             $table->enum('especie',['gato','perro','roedor']);
             $table->enum('tamaño',['grande','mediano','pequeño']);
-            $table->date('fecha_nacimiento')->nullable();
+            $table->enum('edad',['< 1 año','< - 5 año','5 - 10 año', '> 10 año']);
             $table->string('imagen')->nullable(); //para blob
             $table->text('descripcion')->nullable();
             $table->enum('sexo',['macho','hembra']);
@@ -34,7 +34,7 @@ class CreateAnimalsTable extends Migration
             $table->boolean('esterilizado');
             $table->boolean('microchip');
             $table->enum('tasa_adopcion',['gratis','consultar','tasa']);
-            $table->integer('tasa');
+            $table->integer('tasa')->nullable();
             $table->boolean('envio');
             $table->foreign('protectora_id')->references('id')->on('protectoras');
 

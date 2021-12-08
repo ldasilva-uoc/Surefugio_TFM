@@ -1,0 +1,62 @@
+.formulario {
+  width: 40%;
+  margin-top: 5%;
+  padding: 2%;
+  background-color: #f0f2e8;
+}
+
+h1 {
+  margin-bottom: 5%;
+}
+
+button {
+  width: 30%;
+}
+
+.registrarse p,
+.registrarse a {
+  text-align: center;
+}
+
+img {
+  width: 60%;
+}
+
+.usertype {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.select {
+  border: 6px solid red;
+}
+.noselect {
+  border: 6px solid gray;
+}
+
+.fondo {
+  background-color: #f28a24;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form div {
+  margin-top: 2%;
+}
+
+.botones {
+  margin-top: 15% !important;
+}
+
+button {
+  width: 100%;
+  margin-top: 0 !important;
+}
+@media (max-width: 768px) {
+  .formulario {
+    width: 90%;
+  }
+}

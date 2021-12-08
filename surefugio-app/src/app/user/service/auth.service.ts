@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Credencial } from 'src/app/shared/models/credencial.model';
+import { Particular } from 'src/app/shared/models/particular.model';
+import { Protectora } from 'src/app/shared/models/protectora.model';
 import { User } from 'src/app/shared/models/user.model';
 import { TokenService } from './token.service';
 
@@ -30,12 +32,27 @@ export class AuthService {
   }
 
   register(user: User): Observable<any> {
+
     return this.http.post('http://127.0.0.1:8000/api/auth/register', user);
   }
 
+  registerProtectora(protectora: Protectora): Observable<any> {
+
+    return this.http.post('http://127.0.0.1:8000/api/auth/protectora/register', protectora);
+  }
+
+
+  registerParticular(particular: Particular): Observable<any> {
+
+    return this.http.post('http://127.0.0.1:8000/api/auth/particular/register', particular);
+  }
+
+
+
+
   logout(): Observable<any> {
 
-    this.tokenService.removeToken;
+    this.tokenService.removeToken();
     return this.http.post('http://127.0.0.1:8000/api/auth/logout',null);
   }
 }

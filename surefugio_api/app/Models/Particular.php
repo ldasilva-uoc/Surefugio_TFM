@@ -16,5 +16,6 @@ class Particular extends Model
         'ciudad',
         'provincia',
         'imagen',
+        'user_id'
     ];
 }

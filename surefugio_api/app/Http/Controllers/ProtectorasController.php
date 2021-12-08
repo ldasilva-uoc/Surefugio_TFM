@@ -21,7 +21,7 @@ class ProtectorasController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nombre' => 'required|string|min:6',
+            'nombre' => 'required|string',
             'imagen' => 'image|dimensions:min_width=200,min_height=200',
             'voluntariado' => 'required',
             'pais'=> 'required',
@@ -38,11 +38,11 @@ class ProtectorasController extends Controller
         $path = '';
 
         if(!empty($request->imagen)){
-            $path = $request->imagen->store('protectoras');
+            $path = $request->imagen->store('public/protectoras');
         }
         $protectora->imagen = $path;
 
-        $protectora->user_id = Auth::id();
+        //$protectora->user_id = $id;
         $protectora->save();
         return response()->json([
             'message' => 'Protectora successfully registered',
@@ -124,5 +124,9 @@ class ProtectorasController extends Controller
 
     }
 
+    public function getImage($filename){
+        $file = \Illuminate\Support\Facades\Storage::get($filename);
+        return response($file, 200)->header('Content-Type', 'image/jpeg');
+    }
 
 }

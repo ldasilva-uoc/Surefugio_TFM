@@ -12,6 +12,8 @@ import { VoluntariadoListComponent } from './protectoras/componentes/voluntariad
 import { PortadaComponent } from './shared/views/portada/portada.component';
 import { LoginComponent } from './user/componentes/login/login.component';
 import { SigninComponent } from './user/componentes/signin/signin.component';
+import { SignupParticularComponent } from './user/componentes/signup-particular/signup-particular.component';
+import { SignupProtectoraComponent } from './user/componentes/signup-protectora/signup-protectora.component';
 
 const routes: Routes = [
   {path: '', component:PortadaComponent},
@@ -25,7 +27,10 @@ const routes: Routes = [
   {path: 'portada', component:PortadaComponent},
   {path: 'misanimales', component:MisAnimalesComponent},
   {path: 'protectora/animal/add', component:AnimalAddComponent},
-  {path: 'protectora/animal/edit/:id', component:AnimalEditComponent}
+  {path: 'protectora/animal/edit/:id', component:AnimalEditComponent},
+  {path: 'registro/protectora', component:SignupProtectoraComponent},
+  {path:'registro/particular',component:SignupParticularComponent}
+
 ];
 
 @NgModule({

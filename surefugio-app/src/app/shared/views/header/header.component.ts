@@ -6,6 +6,8 @@ import * as LoginAction from '../../../user/actions';
 import * as ProtectoraProfileAction from '../../../profile_protectora/actions';
 import { Protectora } from '../../models/protectora.model';
 import { ProfileProtectoraService } from 'src/app/profile_protectora/service/profile-protectora.service';
+import { Particular } from '../../models/particular.model';
+import * as ParticularProfileAction from '../../../profile_particular/actions';
 
 @Component({
   selector: 'app-header',
@@ -17,6 +19,7 @@ export class HeaderComponent implements OnInit {
   public islogin:boolean;
   public user: User;
   public protectora: Protectora;
+  public particular: Particular;
 
   public name: String
   //public particular: Particular;
@@ -29,7 +32,12 @@ export class HeaderComponent implements OnInit {
       this.user = login.auth;
 
       if(this.isProtectora && this.islogin ){
+        console.log("el usuario atentificado es una PROTECTORA")
         this.store.dispatch(ProtectoraProfileAction.getProtectora());
+      }
+      else if(!this.isProtectora && this.islogin ){
+        console.log("el usuario atentificado es un PARTICULAR")
+        this.store.dispatch(ParticularProfileAction.getParticular());
       }
 
     });
@@ -38,6 +46,9 @@ export class HeaderComponent implements OnInit {
         this.name = protectora.protectora.nombre;
     });
 
+    this.store.select('profileParticularApp').subscribe(particular => {
+      this.name = particular.particular.nombre;
+  });
   }
 
   ngOnInit(): void {

@@ -1,0 +1,100 @@
+
+<div class="fondo">
+
+    <div class="formulario row justify-content-center rounded" >
+        <div>
+            <p>Pasos 2 de 2</p>
+        </div>
+        <h1 class="text-center">Registro usuario</h1>
+      
+        <div>    
+            <form [formGroup]="protectoraForm" (ngSubmit)="addProtectora()" class="row justify-content-center">    
+                <!-- nombre -->
+                <div class="col-12">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" [formControl]="nombre" class="form-control" placeholder="Nombre de la protectora">
+                    <span style="color: red;" *ngIf="protectoraForm.get('nombre')?.errors && (protectoraForm.get('nombre')?.touched || protectoraForm.get('nombre')?.dirty)">
+                        <span *ngIf="protectoraForm.get('nombre')?.errors?.required">nombre is required</span> 
+                    </span>
+                 </div>
+
+
+                 <div class="col-12">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [formControl]="voluntariado" (change)="fieldsChange($event)">
+                    <label class="form-check-label" for="flexSwitchCheckDefault"> ¿Buscas voluntarios?</label> 
+                 </div>
+
+
+    
+                <div class="col-12" *ngIf="needvoluntariado">
+                    <label for="nombre">Requisitos para voluntarios</label>
+                    <textarea type="text" [formControl]="req_voluntariado" class="form-control" placeholder="Requisitos para voluntarios">
+                    </textarea>
+                </div>
+
+                <div class="col-12">
+                    <label for="telefono">Telefono</label>
+                    <input type="text" [formControl]="telefono" class="form-control" placeholder="Telefono">
+                    <span style="color: red;" *ngIf="protectoraForm.get('telefono')?.errors && (protectoraForm.get('telefono')?.touched || protectoraForm.get('telefono')?.dirty)">
+                        <span *ngIf="protectoraForm.get('telefono')?.errors?.required">telefono is required</span> 
+                    </span>
+                </div>
+                
+                <div class="col-12">
+                    <label for="web">Web</label>
+                    <input type="text" [formControl]="web" class="form-control" placeholder="URL de la web">
+                </div>
+
+                <div class="col-12">
+                    <label for="facebook">Facebook</label>
+                    <input type="text" [formControl]="facebook" class="form-control" placeholder="URL de la cuenta de facebook">
+                </div>
+
+                <div class="col-12">
+                    <label for="instagram">Instagram</label>
+                    <input type="text" [formControl]="instagram" class="form-control" placeholder="URL de la cuenta deinstagram">
+                </div>
+
+                <div class="col-12">
+                    <label for="historia">Historia</label>
+                    <textarea type="text" [formControl]="historia" class="form-control" placeholder="Cuentanos algo de la portectora">
+                    </textarea>
+                </div>
+
+                <div class="col-12">
+                    <label for="pais" class="form-label" >Pais</label>
+                    <input type="text" class="form-control" id="pais"  type="text" [formControl]="pais" placeholder="pais" required>
+                    <span style="color: red;" *ngIf="protectoraForm.get('pais')?.errors && (protectoraForm.get('pais')?.touched || protectoraForm.get('pais')?.dirty)">
+                        <span *ngIf="protectoraForm.get('pais')?.errors?.required">Campo obligatorio</span> 
+                    </span>
+                </div>
+            
+                <div class="col-12">
+                    <label for="ciudad" class="form-label" >Ciudad</label>
+                    <input type="text" class="form-control" id="ciudad"  type="text" [formControl]="ciudad" placeholder="ciudad" required>
+                    <span style="color: red;" *ngIf="protectoraForm.get('ciudad')?.errors && (protectoraForm.get('ciudad')?.touched || protectoraForm.get('ciudad')?.dirty)">
+                        <span *ngIf="protectoraForm.get('ciudad')?.errors?.required">Campo obligatorio</span> 
+                    </span>
+                </div>
+            
+                <div class="col-12">
+                    <label for="provincia" class="form-label" >Provincia</label>
+                    <input type="text" class="form-control" id="provincia"  type="text" [formControl]="provincia" placeholder="provincia" required>
+                    <span style="color: red;" *ngIf="protectoraForm.get('provincia')?.errors && (protectoraForm.get('provincia')?.touched || protectoraForm.get('provincia')?.dirty)">
+                        <span *ngIf="protectoraForm.get('provincia')?.errors?.required">Campo obligatorio</span> 
+                    </span>
+                </div>
+            
+                
+
+
+                <div class="col-12 justify-content-center row botones">
+                    <button class="btn btn-primary my-4" type="submit" [disabled]="!protectoraForm.valid">Registrar</button>  
+                    <button class="btn btn-secondary my-4" type="submit" >Cancelar</button>
+                </div>
+
+            </form>    
+        </div> 
+    </div>
+
+</div>

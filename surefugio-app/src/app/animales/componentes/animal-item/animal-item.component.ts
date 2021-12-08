@@ -10,20 +10,18 @@ import { Animal } from 'src/app/shared/models/animal.model';
   styleUrls: ['./animal-item.component.css']
 })
 export class AnimalItemComponent implements OnInit {
-
+  public isProtectora:boolean|undefined;
+  public islogin:boolean;
   animal!: Animal |undefined;
   protectora_nom: string|undefined;
 
   constructor(private route: ActivatedRoute, private store:Store<AppState>) {
     this.route.params.subscribe(params => {
       const id_ = +params.id;
-      console.log(id_)
       this.store.select('animalesApp').subscribe(animales => {
         var animales_list = animales.animales;
-        console.log(animales_list)
         var animal = animales_list.find(({id})=> id === id_)
         this.animal = animal;
-        console.log(this.animal)
       });
       this.store.select('protectorasApp').subscribe(protectoras => {
         this.protectora_nom = protectoras.protectoras.find(x => x.id === this.animal?.protectora_id)?.nombre;
@@ -31,6 +29,11 @@ export class AnimalItemComponent implements OnInit {
       });
     })
 
+    this.store.select('UserApp').subscribe(login => {
+      this.islogin = login.loggedIn;
+      this.isProtectora = login.protectora;
+
+    });
 
    }
 

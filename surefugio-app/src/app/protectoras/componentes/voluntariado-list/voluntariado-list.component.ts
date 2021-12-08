@@ -14,13 +14,15 @@ export class VoluntariadoListComponent implements OnInit {
   protectoras: Protectora[];
 
   constructor(private store: Store<AppState>) { 
-
+    this.store.select('protectorasApp').subscribe(protectoras => {
+         this.protectoras = protectoras.protectoras.filter(protectora => protectora.voluntariado)
+    })
   
   }
 
   ngOnInit(): void {
     
-    this.store.select('protectorasApp').subscribe(protectoras => this.protectoras = protectoras.protectoras.filter(item => item.req_voluntario))
+ 
     this.store.dispatch(getAllProtectoras());
 
   }

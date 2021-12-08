@@ -5,6 +5,7 @@ import { ProfileProtectoraService } from 'src/app/profile_protectora/service/pro
 import { Protectora } from '../../models/protectora.model';
 import { User } from '../../models/user.model';
 import * as ProtectoraProfileAction from '../../../profile_protectora/actions';
+import * as ParticularProfileAction from '../../../profile_particular/actions';
 
 @Component({
   selector: 'app-portada',
@@ -25,11 +26,13 @@ export class PortadaComponent implements OnInit {
       this.user = login.auth;
 
       if(this.isProtectora && this.islogin ){
+        console.log("el usuario atentificado es una PROTECTORA")
         this.store.dispatch(ProtectoraProfileAction.getProtectora());
       }
-    });
-
-    this.store.select('profileProtectoraApp').subscribe(protectora => {
+      else if(!this.isProtectora && this.islogin ){
+        console.log("el usuario atentificado es un PARTICULAR")
+        this.store.dispatch(ParticularProfileAction.getParticular());
+      }
 
     });
 
