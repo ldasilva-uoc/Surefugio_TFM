@@ -26,7 +26,7 @@ class AnimalsController extends Controller
     public function addAnimal(Request $request){
         $validator = Validator::make($request->all(), [
             'nombre' => 'required|string',
-            'imagen' => 'image|dimensions:min_width=200,min_height=200',
+            'imagen' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'edad' => 'required',
             'especie' => 'required',
             'sexo' => 'required',
@@ -52,10 +52,13 @@ class AnimalsController extends Controller
 
         $path = '';
 
+  
+
         if(!empty($request->imagen)){
-            $path = $request->imagen->store('public/animales');
+            $path = $request->imagen->store('animales');
+            $animal->imagen = $path;
         }
-        $animal->imagen = $path;
+       
         $protectora = Protectora::where('user_id',Auth::id())->first(); 
         $protectora_id = $protectora->id ;
         $animal->protectora_id = $protectora_id;
@@ -65,6 +68,8 @@ class AnimalsController extends Controller
             'animal' => $animal,
         ]);
     }
+
+
 
     public function deleteAnimal($id){
 
@@ -104,19 +109,16 @@ class AnimalsController extends Controller
 
         $animal->nombre =$request->nombre;
         $animal->especie =$request->especie;
-        $animal->tamaño =$request->tamaño;
+        $animal->tamano =$request->tamano;
 
-        if($request->hasFile('imagen')) {
+        if(!empty($request->imagen)) {
+
             $path = '';
-
-            if(!empty($request->imagen)){
-                $path = $request->imagen->store('animales');
-            }
+            $path = $request->imagen->store('animales');
             $animal->imagen = $path;
         }
 
 
-        $animal->fecha_nacimiento =$request->fecha_nacimiento;
         $animal->descripcion =$request->descripcion;
         $animal->sexo =$request->sexo;
         $animal->pais =$request->pais;
@@ -132,6 +134,7 @@ class AnimalsController extends Controller
         $animal->tasa_adopcion =$request->tasa_adopcion;
         $animal->tasa =$request->tasa;
         $animal->envio =$request->envio;
+      
         $animal->save();
         return response()->json([
             'message' => 'animal successfully editado',

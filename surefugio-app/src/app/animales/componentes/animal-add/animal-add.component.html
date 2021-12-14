@@ -43,11 +43,8 @@
              
                 <div class="">
                     <label for="imagen" class="form-label" >Imagen</label>
-                    <input class="form-control" type="file" id="imagen" [formControl]="imagen">
+                    <input class="form-control" type="file" id="imagen" [formControl]="imagen" (change)="onFileChange($event)">
                 </div>
-
-
-            
             
                 <div class="">
                     <label for="descripcion" class="form-label" >Historia</label>

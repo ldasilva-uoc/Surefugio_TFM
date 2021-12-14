@@ -21,7 +21,8 @@ export class SignupParticularComponent implements OnInit {
   public pais: FormControl;
   public ciudad: FormControl;
   public provincia: FormControl;
-
+  public imagenombre: any = null;
+  public haveImage:Boolean = false;
   public messageError: any;
   RegistroState$: UserState;
   particularForm: FormGroup;
@@ -36,6 +37,12 @@ export class SignupParticularComponent implements OnInit {
       this.RegistroState$ = user;
       this.user$ = user.auth;
     })
+  }
+
+  onFileChange(event:any){
+    this.haveImage=true;
+    this.imagenombre= event.target.files[0];
+    console.log(this.imagen);
   }
 
   ngOnInit(): void {
@@ -69,9 +76,22 @@ export class SignupParticularComponent implements OnInit {
       user_id: this.user$.id,      
     }
 
+    const formData = new FormData();
+
+    formData.append('nombre', this.nombre.value);
+    formData.append('apellido',this.apellido.value);
+    if(this.haveImage){
+      formData.append('imagen', this.imagenombre);
+    }
+    formData.append('telefono', this.telefono.value);
+    formData.append('pais', this.pais.value);
+    formData.append('ciudad', this.ciudad.value);
+    formData.append('provincia', this.provincia.value);
+    formData.append('user_id', this.user$.id+"");
+
     console.log(this.particular)
 
-   this.store.dispatch(UserAction.registroParticular({particular: this.particular}))
+   this.store.dispatch(UserAction.registroParticular({formData : formData }))
   }
 
 

@@ -2,7 +2,35 @@ img {
   width: 100%;
 }
 .adoptar {
-  border: 1px solid black;
+  background-color: #f28a24;
+  color: #f0f2e8;
   width: 30%;
   padding: 2%;
+}
+
+.adoptar a {
+  color: #f0f2e8;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.inner {
+  margin-top: 10%;
+}
+.portada {
+  margin-top: 10%;
+}
+
+@media only screen and (max-width: 992px) {
+  .portada {
+    margin-top: 20%;
+  }
+  .texto__adoptar {
+    margin-top: 20%;
+  }
+  .adoptar {
+    background-color: #f28a24;
+    color: #f0f2e8;
+    width: 50%;
+  }
 }

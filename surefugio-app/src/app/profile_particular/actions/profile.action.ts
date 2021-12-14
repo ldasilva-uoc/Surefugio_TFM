@@ -43,7 +43,7 @@ export const getProtectorasFavError = createAction(
 
 export const addProtectorasFav = createAction(
     '[Particular Fav Protectoras] Add protect fav',
-    props<{protectora: Protectora}>()
+    props<{protectora: Protectora |undefined}>()
 )
 
 export const addProtectorasFavSuccess = createAction(
@@ -60,7 +60,7 @@ export const addProtectorasFavError = createAction(
 
 export const deleterProtectorasFav = createAction(
     '[Particular Fav Protectoras] deleter protect fav',
-    props<{protectora: Protectora}>()
+    props<{protectora: Protectora |undefined}>()
 )
 
 export const deleterProtectorasFavSuccess = createAction(
@@ -101,7 +101,7 @@ export const getAnimalFavError = createAction(
 
 export const addAnimalFav = createAction(
     '[Particular Fav Animales] Add Animal fav',
-    props<{animal: Animal}>()
+    props<{animal: Animal|undefined}>()
 )
 
 export const addAnimalFavSuccess = createAction(
@@ -118,7 +118,7 @@ export const addAnimalFavError = createAction(
 
 export const deleterAnimalFav = createAction(
     '[Particular Fav Animales] deleter Animal fav',
-    props<{animal: Animal}>()
+    props<{animal: Animal|undefined}>()
 )
 
 export const deleterAnimalFavSuccess = createAction(
@@ -128,5 +128,66 @@ export const deleterAnimalFavSuccess = createAction(
 
 export const deleterAnimalFavError = createAction(
     '[Particular Fav Animales] deleter Animal fav error',
+    props<{payload:any}>()
+)
+
+
+export const adoptar = createAction(
+    '[Particular adoptar] adoptar Animal',
+    props<{idP: number|undefined, idA:number|undefined }>()
+)
+
+export const adoptarsuccess = createAction(
+    '[Particular adoptar] adoptar Animal success'
+)
+
+export const adoptarError = createAction(
+    '[Particular adoptar] adoptar Animal error',
+    props<{payload:any}>()
+)
+
+
+export const acoger = createAction(
+    '[Particular acoger] acoger Animal',
+    props<{idP: number|undefined, idA:number|undefined }>()
+)
+
+export const acogersuccess = createAction(
+    '[Particular acoger] acoger Animal success',
+)
+
+export const acogerError = createAction(
+    '[Particular acoger] acoger Animal error',
+    props<{payload:any}>()
+)
+
+
+
+export const voluntariado = createAction(
+    '[Particular voluntariado] voluntariado Animal',
+    props<{idP: number|undefined}>()
+)
+
+export const voluntariadosuccess = createAction(
+    '[Particular voluntariado] voluntariado Animal success',
+)
+
+export const voluntariadoError = createAction(
+    '[Particular voluntariado] voluntariado Animal error',
+    props<{payload:any}>()
+)
+
+export const editParticular = createAction(
+    '[Profile Particular] Edit Particular',
+    props<{formData: FormData}>()
+);
+
+export const editParticularSuccess = createAction(
+    '[Profile Particular] Edit Particular success',
+    props<{particular: Particular}>()
+)
+
+export const editParticularError = createAction(
+    '[Profile Particular] Edit Particular error',
     props<{payload:any}>()
 )

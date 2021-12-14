@@ -40,7 +40,7 @@ export const signupFailureProtectora = createAction(
 
 export const registroProtectora = createAction(
     '[Registro Protectora Page] Sign up ',
-    props<{ protectora: Protectora }>()
+    props<{ formData: FormData }>()
 );
 
 export const registroProtectoraSuccess = createAction(
@@ -65,21 +65,21 @@ export const signupSuccessParticular = createAction(
 );
 
 export const signupFailureParticular = createAction(
-    '[Sign up User Protectora Page] Sign up Failure',
+    '[Sign up User Particular Page] Sign up Failure',
     props<{ payload: any }>()
 );
 
 
 export const registroParticular= createAction(
     '[Registro Particular Page] Sign up ',
-    props<{ particular: Particular }>()
+    props<{ formData: FormData }>()
 );
 
 export const registroParticularSuccess = createAction(
-    '[Registro Protectora Page] Sign up Success '
+    '[Registro Particular Page] Sign up Success '
 );
 export const registroParticularFailure= createAction(
-    '[Registro User Protectora Page] Sign up Failure',
+    '[Registro User Particular Page] Sign up Failure',
     props<{ payload: any }>()
 );
 

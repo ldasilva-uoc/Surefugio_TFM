@@ -25,6 +25,11 @@
                         <span *ngIf="particularForm.get('apellido')?.errors?.required">apellido is required</span> 
                     </span>
                  </div>
+                 
+                 <div class="">
+                    <label for="imagen" class="form-label" >Imagen</label>
+                    <input class="form-control" type="file" id="imagen" [formControl]="imagen" (change)="onFileChange($event)">
+                </div>
 
 
                 <div class="col-12">

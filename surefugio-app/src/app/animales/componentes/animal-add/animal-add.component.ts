@@ -33,15 +33,21 @@ export class AnimalAddComponent implements OnInit {
   public tasa_adopcion: FormControl;
   public tasa: FormControl;
   public envio: FormControl;
-
+  public img: any;
   public animalForm: FormGroup;
 
+  public imagenombre: any = null;
+  
   public bSubmitted: boolean;
 
   
   public haveTasa: Boolean;
+  public haveImage:Boolean = false;
 
-  constructor( private store:Store<AppState>, private formBuilder: FormBuilder) { }
+  constructor( private store:Store<AppState>, private formBuilder: FormBuilder) { 
+
+
+  }
 
 
   ngOnInit(): void {
@@ -98,39 +104,48 @@ export class AnimalAddComponent implements OnInit {
     else{
       this.haveTasa = false
     }
+  }
 
-
+  onFileChange(event:any){
+    this.haveImage=true;
+    this.imagenombre= event.target.files[0];
+    console.log(this.imagen);
   }
 
 
   public addAnimal(){
     this.bSubmitted = true;
-    const animal: Animal = {
-      nombre: this.nombre.value,
-      especie: this.especie.value,
-      //imagen: this.imagen.value,
-      edad: this.edad.value,
-      descripcion: this.descripcion.value,
-      sexo: this.sexo.value,
-      pais: this.pais.value,
-      ciudad: this.ciudad.value,
-      provincia: this.provincia.value,
-      adopcion: this.adopcion.value,
-      acogida: this.acogida.value,
-      urgente: this.urgente.value,
-      vacunado: this.vacunado.value,
-      desparasitado: this.desparasitado.value,
-      esterilizado: this.esterilizado.value,
-      microchip: this.microchip.value,
-      tasa_adopcion: this.tasa_adopcion.value,
-      tasa: this.tasa.value,
-      envio: this.envio.value,
-      tamaño: this.tamano.value,
+    
+
+    const formData = new FormData();
+
+    formData.append('nombre', this.nombre.value);
+    formData.append('especie',this.especie.value,);
+    if(this.haveImage){
+      formData.append('imagen', this.imagenombre);
     }
+    
+    formData.append('edad', this.edad.value);
+    formData.append('descripcion', this.descripcion.value);
+    formData.append('sexo', this.sexo.value);
+    formData.append('pais', this.pais.value);
+    formData.append('ciudad', this.ciudad.value);
+    formData.append('provincia', this.provincia.value);
+    formData.append('adopcion', +this.adopcion.value +"");
+    formData.append('tasa_adopcion', this.tasa_adopcion.value);
+    formData.append('acogida', +this.acogida.value +"");
+    formData.append('urgente', +this.urgente.value+"");
+    formData.append('vacunado', +this.vacunado.value+"");
+    formData.append('desparasitado', +this.desparasitado.value+"");
+    formData.append('esterilizado', +this.esterilizado.value+"");
+    formData.append('microchip', +this.microchip.value+"");
+    formData.append('envio', +this.adopcion.value+"");
+    formData.append('tasa', this.tasa.value);
+    formData.append('tamano', this.tamano.value);
 
-    console.log(animal);
 
-    this.store.dispatch(AnimalAction.addAnimal({animal}));
+
+    this.store.dispatch(AnimalAction.addAnimal({formData}));
 
 }
 }

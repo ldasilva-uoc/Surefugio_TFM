@@ -17,8 +17,8 @@ class CreateFavAnimalsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('particular_id');
             $table->unsignedBigInteger('animal_id');
-            $table->foreign('particular_id')->references('id')->on('particulars');
-            $table->foreign('animal_id')->references('id')->on('animals');
+            $table->foreign('particular_id')->references('id')->on('particulars')->onDelete('cascade');
+            $table->foreign('animal_id')->references('id')->on('animals')->onDelete('cascade');
             $table->timestamps();
         });
     }

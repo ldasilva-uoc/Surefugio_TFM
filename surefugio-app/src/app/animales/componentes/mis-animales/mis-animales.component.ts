@@ -33,8 +33,10 @@ export class MisAnimalesComponent implements OnInit {
 
   deleteAnimal(animal: Animal){
     console.log(animal);
-
-    this.store.dispatch(deleteAnimal({animal}));
+    if (confirm('¿Seguro que quieres eliminar este animal?')) {
+      this.store.dispatch(deleteAnimal({animal}));
+    }
+    
 
   }
 

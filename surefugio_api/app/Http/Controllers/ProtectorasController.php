@@ -35,12 +35,15 @@ class ProtectorasController extends Controller
 
         $protectora = new Protectora($request->all());
 
-        $path = '';
+        
 
         if(!empty($request->imagen)){
-            $path = $request->imagen->store('public/protectoras');
+            $path = '';
+            $path = $request->imagen->store('protectoras');
+
+            $protectora->imagen = $path;
         }
-        $protectora->imagen = $path;
+       
 
         //$protectora->user_id = $id;
         $protectora->save();
@@ -80,28 +83,22 @@ class ProtectorasController extends Controller
         return Protectora::where('voluntariado',1)->get();
     }
 
-    public function editProtectora(Request $request, $id){
+    public function editProtectora(Request $request){
 
       
-        $protectora = Protectora::find($id);
+        $protectora = Protectora::where('user_id',Auth::id())->first();
 
-        if($protectora->user_id != Auth::id())
-        {
-            return response()->json([
-                'message' => 'no logueado',
-            ]);
-        }
         $protectora->nombre =$request->nombre;
         $protectora->voluntariado =$request->voluntariado;
         $protectora->req_voluntario =$request->req_voluntario;
 
         if($request->hasFile('imagen')) {
-            $path = '';
-
             if(!empty($request->imagen)){
+                $path = '';
                 $path = $request->imagen->store('protectoras');
+    
+                $protectora->imagen = $path;
             }
-            $protectora->imagen = $path;
         }
 
 

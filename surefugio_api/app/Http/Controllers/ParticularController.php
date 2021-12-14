@@ -33,7 +33,7 @@ class ParticularController extends Controller
         $path = '';
 
         if(!empty($request->imagen)){
-            $path = $request->imagen->store('public/particular');
+            $path = $request->imagen->store('particular');
         }
         $particular->imagen = $path;
 
@@ -61,15 +61,8 @@ class ParticularController extends Controller
             ]);  
     }
 
-    public function editParticular(Request $request, $id){
-        $particular = Particular::find($id);
-
-        if($particular->user_id != Auth::id())
-        {
-            return response()->json([
-                'message' => 'no logueado',
-            ]);
-        }
+    public function editParticular(Request $request){
+        $particular = Particular::where('user_id',Auth::id())->first();
 
         $particular->nombre =$request->nombre;
         $particular->apellido =$request->apellido;
@@ -79,7 +72,7 @@ class ParticularController extends Controller
             $path = '';
 
             if(!empty($request->imagen)){
-                $path = $request->imagen->store('particulars');
+                $path = $request->imagen->store('particular');
             }
             $particular->imagen = $path;
         }

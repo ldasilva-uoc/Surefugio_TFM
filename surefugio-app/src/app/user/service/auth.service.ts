@@ -36,15 +36,15 @@ export class AuthService {
     return this.http.post('http://127.0.0.1:8000/api/auth/register', user);
   }
 
-  registerProtectora(protectora: Protectora): Observable<any> {
+  registerProtectora(formData: FormData): Observable<any> {
 
-    return this.http.post('http://127.0.0.1:8000/api/auth/protectora/register', protectora);
+    return this.http.post('http://127.0.0.1:8000/api/auth/protectora/register', formData);
   }
 
 
-  registerParticular(particular: Particular): Observable<any> {
+  registerParticular(formData: FormData): Observable<any> {
 
-    return this.http.post('http://127.0.0.1:8000/api/auth/particular/register', particular);
+    return this.http.post('http://127.0.0.1:8000/api/auth/particular/register', formData);
   }
 
 

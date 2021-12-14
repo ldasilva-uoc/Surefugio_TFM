@@ -1,0 +1,31 @@
+.urgente {
+  background-color: #e94649;
+  color: #f0f2e8;
+  font-weight: bold;
+}
+
+.adopcion {
+  background-color: #7b8676;
+  color: #f0f2e8;
+  font-weight: bold;
+}
+
+.acogida {
+  background-color: #f8b36c;
+  font-weight: bold;
+}
+h1 {
+  font-family: "Maven Pro", sans-serif;
+  font-weight: bold;
+  color: #f28a24;
+}
+
+.btn-primary {
+  background-color: #f28a24 !important;
+  border-color: #f28a24 !important ;
+}
+
+.btn-danger {
+  background-color: transparent !important;
+  color: #e94649;
+}

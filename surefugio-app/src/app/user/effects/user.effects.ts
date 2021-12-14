@@ -72,8 +72,8 @@ export class UserEffects {
     addProtectora$ = createEffect(() =>
     this.actions$.pipe(
       ofType(userAction.registroProtectora),
-      exhaustMap(({protectora}) => {
-        return this.authService.registerProtectora(protectora).pipe(
+      exhaustMap(({formData}) => {
+        return this.authService.registerProtectora(formData).pipe(
           map((auth) => {
             return userAction.registroProtectoraSuccess()
           }
@@ -125,8 +125,8 @@ tap(() =>{
 addParticular$ = createEffect(() =>
 this.actions$.pipe(
   ofType(userAction.registroParticular),
-  exhaustMap(({particular}) => {
-    return this.authService.registerParticular(particular).pipe(
+  exhaustMap(({formData}) => {
+    return this.authService.registerParticular(formData).pipe(
       map((auth) => {
         return userAction.registroParticularSuccess()
       }

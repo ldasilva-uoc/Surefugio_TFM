@@ -30,9 +30,9 @@ export class AnimalesEffects{
     addAnimal$ = createEffect(() =>
         this.actions$.pipe(
             ofType(addAnimal),
-            mergeMap(({animal}) => 
-                this.AnimalesService.addAnimal(animal).pipe(
-                    map(() => 
+            mergeMap(({formData}) => 
+                this.AnimalesService.addAnimal(formData).pipe(
+                    map((animal) => 
                         addAnimalSuccess({animal})
                     ),
                     catchError((error) => of(addAnimalError({payload:error})))
@@ -55,9 +55,9 @@ export class AnimalesEffects{
     editAnimal$ = createEffect(() => 
         this.actions$.pipe(
             ofType(editAnimal),
-            mergeMap(({animal}) =>
-                this.AnimalesService.editAnimal(animal).pipe(
-                    map(() => 
+            mergeMap(({formData}) =>
+                this.AnimalesService.editAnimal(formData).pipe(
+                    map((animal) => 
                         editAnimalSuccess({animal})
                     ),
                     catchError((error) => of(editAnimalError({payload: error})))

@@ -1,35 +1,70 @@
 
 <div class="fondo">
 
-    <div class="container" >
-   
-    <div class="row justify-content-center">
-        <div class="header d-flex justify-content-between align-items-center">
-            <div>
+    <div class="container">
+
+        <div  *ngIf="islogin && !isProtectora">
+            <p class="border-end border-primary border-4 text-end" style="padding: 1%;" *ngIf="ProfileParticularState$.error && (buttonadoptar || buttonacoger)">
+                No se ha podido contactar con la protectora, intentelo más tarde
+            </p>
+            <p class="border-end border-primary border-4 text-end" style="padding: 1%;" *ngIf="!ProfileParticularState$.error && (buttonadoptar || buttonacoger)">
+                Se ha enviado un correo a la protectora con tu información, pronto se pondrán en contacto contigo
+            </p>
+
+            <p class="border-end border-primary border-4 text-end" style="padding: 1%;" *ngIf="ProfileParticularState$.error && (buttonaddfavorito)">
+                No se ha podido añadir a favoritos, intentelo más tarde
+            </p>
+            <p class="border-end border-primary border-4 text-end" style="padding: 1%;" *ngIf="!ProfileParticularState$.error && (buttonaddfavorito)">
+                Se ha añadido animal a favoritos
+            </p>
+
+            <p class="border-end border-primary border-4 text-end" style="padding: 1%;" *ngIf="ProfileParticularState$.error && (buttondeletefavorito)">
+                No se ha podido eliminar animal de favoritos, intentelo más tarde
+            </p>
+            <p class="border-end border-primary border-4 text-end" style="padding: 1%;" *ngIf="!ProfileParticularState$.error && (buttondeletefavorito)">
+                Se ha eliminado el animal de favoritos
+            </p>
+        </div>
+
+    <div class="row justify-content-center shadow p-3 mb-5 bg-body">
+        <div class="header d-flex justify-content-between align-items-cente">
+            <div class="inner__header">
                 <h1>{{animal?.nombre}}</h1>
                 <p>{{animal?.ciudad}}, {{animal?.pais}}</p>
-                <div>
+                <div class="d-flex align-items-center" >
+                    <img src="../../../../assets/imagenes/icon_protectora.png" class="imagen_protectora">
                     <a [routerLink]="['/protectora', animal?.protectora_id]" >{{protectora_nom}}</a>
                 </div>
                 
             </div>
-            <div class="d-flex flex-column align-items-center" *ngIf="islogin && !isProtectora">
-                <button class="btn btn-primary" type="submit" >Quiero adoptarlo!</button>
-                <a href="">Quiero acoger</a>
+            <div class="d-flex flex-column align-items-center justify-content-evenly" *ngIf="islogin && !isProtectora">
+                <button class="btn btn-primary boton__adoptar" type="submit" (click)="adoptar()" >Quiero adoptarlo!</button>
+                <button class="btn btn-primary boton__acoger" (click)="acoger()">Quiero acoger</button>
             </div>
         </div>
     
         <div class="body row justify-content-between" >
             <div class="col-md-4 cuadrado">
-                <img src="../../../../assets/imagenes/Perro.png" class="card-img-buton" alt="...">
-    
-                <div class="estado" *ngIf="animal?.urgente">
+                <div class="contenedor_imagen">
+                    <div class="imagenes">
+                        <img src="http://127.0.0.1:8000/storage/{{animal?.imagen}}" alt="..." *ngIf="animal?.imagen">
+                        <img src="../../../../assets/imagenes/perro.jpg" alt="..." *ngIf="!animal?.imagen && animal?.especie === 'perro'">
+                        <img src="../../../../assets/imagenes/gato.jpg" alt="..." *ngIf="!animal?.imagen && animal?.especie === 'gato'">
+                        <img src="../../../../assets/imagenes/roedor.jpg" alt="..." *ngIf="!animal?.imagen && animal?.especie === 'roedor'"> 
+                    </div>
+                   <div class="botones_favoritos">
+                        <img *ngIf="islogin && !isProtectora && !favorito" (click)="AddFav()" src="../../../../assets/imagenes/delete_fav.png">
+                        <img *ngIf="islogin && !isProtectora && favorito" (click)= "RemoveFav()" src="../../../../assets/imagenes/add_fav.png">
+                    </div>
+                </div>
+            
+                <div class="estado urgente" *ngIf="animal?.urgente">
                     Urgente
                   </div>
-                <div class="estado" *ngIf="!animal?.urgente && animal?.adopcion && !animal?.acogida">
+                <div class="estado adopcion" *ngIf="!animal?.urgente && animal?.adopcion && !animal?.acogida">
                     Adopcion
                   </div>
-                <div class="estado" *ngIf="!animal?.urgente && animal?.adopcion && animal?.acogida">
+                <div class="estado acogida" *ngIf="!animal?.urgente && animal?.adopcion && animal?.acogida">
                     Acogida
                 </div>
             </div>
@@ -61,36 +96,41 @@
                     <ul>
                         <li class="row justify-content-between">
                             <p class="col-6">Vacunado</p>
-                            <p class="col-6 right_text">{{animal?.vacunado}}</p>
+                            <p *ngIf="animal?.vacunado" class="col-6 right_text">Sí</p>
+                            <p *ngIf="!animal?.vacunado" class="col-6 right_text">No</p>
                         </li>
                         <li class="row justify-content-between">
                             <p class="col-6">Desparasitado</p>
-                            <p class="col-6 right_text">{{animal?.desparasitado}}</p>
+                            <p *ngIf="animal?.desparasitado" class="col-6 right_text">Sí</p>
+                            <p *ngIf="!animal?.desparasitado" class="col-6 right_text">No</p>
                         </li>
                         <li class="row justify-content-between">
                             <p class="col-6">Esterilizado</p>
-                            <p class="col-6 right_text">{{animal?.esterilizado}}</p>
+                            <p *ngIf="animal?.esterilizado" class="col-6 right_text">Sí</p>
+                            <p *ngIf="!animal?.esterilizado" class="col-6 right_text">No</p>
                         </li>
                         <li class="row justify-content-between">
                             <p class="col-6">Con microchip</p>
-                            <p class="col-6 right_text">{{animal?.microchip}}</p>
+                            <p *ngIf="animal?.microchip" class="col-6 right_text">Sí</p>
+                            <p *ngIf="!animal?.microchip" class="col-6 right_text">No</p>
                         </li>
                     </ul>
                 </div>
     
-                <div class="col-md-5">
+                <div class="col-md-5" >
                     <h3>Tasa de adopción</h3>
-                    <p class="tasa" *ngIf="animal?.tasa_adopcion === 'tasa'" >
+                    <p class="tasa fs-4 text-center" *ngIf="animal?.tasa_adopcion === 'tasa'" >
                         {{animal?.tasa}} euros
                     </p>
-                    <p *ngIf="animal?.tasa_adopcion != 'tasa'" >
+                    <p *ngIf="animal?.tasa_adopcion != 'tasa'" class="fs-4 text-center text-capitalize">
                         {{animal?.tasa_adopcion}}
                     </p>
                 </div>
     
                 <div class="col-md-5">
                     <h3>Opción de envío</h3>
-                    <p>{{animal?.envio}}</p>
+                    <p *ngIf="animal?.envio" class="fs-4 text-center" >Sí</p>
+                    <p *ngIf="!animal?.envio" class="fs-4 text-center" >No</p>
                 </div>
             </div>
                 

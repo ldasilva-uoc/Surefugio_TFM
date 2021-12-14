@@ -16,3 +16,18 @@ export const getProtectoraError = createAction(
 )
 
 
+export const editProtectora = createAction(
+    '[Profile Protectora] Edit protectora',
+    props<{formData: FormData}>()
+);
+
+export const editProtectoraSuccess = createAction(
+    '[Profile Protectora] Edit protectora success',
+    props<{protectora: Protectora}>()
+)
+
+export const editProtectoraError = createAction(
+    '[Profile Protectora] Edit protectora error',
+    props<{payload:any}>()
+)
+

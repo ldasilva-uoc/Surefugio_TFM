@@ -1,0 +1,61 @@
+
+<div class="container" style="margin-top: 3%;">
+    <div class="filtro">
+      
+    </div>
+  
+    <div>
+      <h1>Favoritos</h1>
+      <h2>Protectoras</h2>
+      <p>{{protectoras.length}} protectoras</p>
+  
+      <div class="list list_animales d-flex flex-wrap" style=" gap: 12px;">
+        <div class="card" style="width: 18rem;" *ngFor="let protectora of protectoras" [routerLink]="['/protectora', protectora.id]">
+     
+          <div class="card-body">
+            <h5 class="card-title">{{protectora.nombre}}</h5>
+            <p class="card-text">{{protectora.pais}}, {{protectora.ciudad}}</p>
+            <button class="btn btn-primary" type="submit"  (click)= "RemoveFavProtectora(protectora)">Remove Favorito</button>
+          </div>
+          <img src="http://127.0.0.1:8000/storage/{{protectora?.imagen}}" alt="..." class="card-img-buton" *ngIf="protectora?.imagen">
+          <img src="../../../../assets/imagenes/protectora.jpg" alt="..."  class="card-img-buton" *ngIf="!protectora?.imagen">
+         
+        </div>
+      </div>
+
+      <h2>Animales</h2>
+        <p>{{animales.length}} animales</p>
+
+        <div class="list list_animales d-flex flex-wrap" style=" gap: 12px;">
+      <div class="card" style="width: 18rem;" *ngFor="let animal of animales" [routerLink]="['/animal', animal.id]">
+   
+        <div class="card-body">
+          <h5 class="card-title">{{animal.nombre}}</h5>
+          <p class="card-text">{{animal.especie}}</p>
+          <p class="card-text">{{animal.pais}}, {{animal.ciudad}}</p>
+          <button class="btn btn-primary" type="submit"  (click)= "RemoveFavAnimal(animal)">Remove Favorito</button>
+        </div>
+  
+        <img src="http://127.0.0.1:8000/storage/{{animal?.imagen}}"  class="card-img-buton" *ngIf="animal?.imagen">
+        <img src="../../../../assets/imagenes/perro.jpg" alt="..." *ngIf="!animal?.imagen && animal?.especie === 'perro'">
+        <img src="../../../../assets/imagenes/gato.jpg" alt="..." *ngIf="!animal?.imagen && animal?.especie === 'gato'">
+        <img src="../../../../assets/imagenes/roedor.jpg" alt="..." *ngIf="!animal?.imagen && animal?.especie === 'roedor'">
+        <div class="card-body" *ngIf="animal.urgente">
+          Urgente
+        </div>
+        <div class="card-body" *ngIf="!animal.urgente && animal.adopcion && !animal.acogida">
+          Adopcion
+        </div>
+        <div class="card-body" *ngIf="!animal.urgente && animal.adopcion && animal.acogida">
+          Acogida
+        </div>
+       
+      </div>
+    </div>
+
+  
+    </div>
+  
+  
+    
+  </div>

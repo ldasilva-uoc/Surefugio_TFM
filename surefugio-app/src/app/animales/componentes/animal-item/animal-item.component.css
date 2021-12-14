@@ -1,7 +1,7 @@
 .fondo {
 }
 .header {
-  margin-bottom: 1%;
+  margin-bottom: 3%;
 }
 .body {
   width: 100%;
@@ -20,7 +20,7 @@ img {
 }
 
 .estado {
-  border: 1px solid black;
+  padding: 4%;
   text-align: center;
 }
 
@@ -34,4 +34,74 @@ ul {
 
 .historia {
   margin-top: 2%;
+}
+
+.inner {
+  background-color: #f0f2e8;
+}
+
+h1 {
+  font-family: "Maven Pro", sans-serif;
+  font-weight: bold;
+  color: #f28a24;
+}
+
+h3 {
+  font-family: "Maven Pro", sans-serif;
+  font-weight: bold;
+  color: #7b8676;
+}
+
+.imagen_protectora {
+  width: 20px;
+  margin-right: 1%;
+}
+
+.inner__header {
+  width: 50%;
+}
+
+.urgente {
+  background-color: #e94649;
+  color: #f0f2e8;
+  font-weight: bold;
+}
+
+.adopcion {
+  background-color: #7b8676;
+  color: #f0f2e8;
+  font-weight: bold;
+}
+
+.acogida {
+  background-color: #f8b36c;
+  font-weight: bold;
+}
+.boton__adoptar {
+  background-color: #f28a24 !important;
+  border-color: #f28a24 !important ;
+}
+
+.boton__acoger {
+  background-color: transparent !important;
+  color: #f28a24 !important;
+  border-color: #f28a24 !important ;
+}
+
+.contenedor_imagen {
+  position: relative;
+  text-align: center;
+}
+
+.botones_favoritos {
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 15%;
+}
+
+.border-primary {
+  border-color: #f28a24 !important ;
+  background-color: #ffd9b3;
 }

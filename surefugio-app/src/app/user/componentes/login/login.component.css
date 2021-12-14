@@ -10,3 +10,24 @@ button {
 .registrarse a {
   text-align: center;
 }
+.btn-primary {
+  background-color: #f28a24 !important;
+  border-color: #f28a24 !important ;
+}
+h1 {
+  font-family: "Maven Pro", sans-serif;
+  font-weight: bold;
+  color: #f28a24;
+}
+
+@media only screen and (max-width: 992px) {
+  .formulario {
+    width: 80%;
+  }
+  button {
+    width: 50%;
+  }
+  .login {
+    padding-top: 20%;
+  }
+}

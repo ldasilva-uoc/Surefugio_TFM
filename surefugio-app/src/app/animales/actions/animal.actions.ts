@@ -17,7 +17,7 @@ export const getAllAnimalesError = createAction(
 
 export const addAnimal = createAction(
     '[Animal] Add animal',
-    props<{animal: Animal}>()
+    props<{formData: FormData}>()
 )
 
 export const addAnimalSuccess = createAction(
@@ -50,7 +50,7 @@ export const deleteAnimalError = createAction(
 
 export const editAnimal = createAction(
     '[Animal] Edit animal',
-    props<{animal: Animal}>()
+    props<{formData: FormData }>()
 )
 
 export const editAnimalSuccess = createAction(

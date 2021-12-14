@@ -17,8 +17,8 @@ class CreateFavProtectorasTable extends Migration
             $table->id();
             $table->unsignedBigInteger('particular_id');
             $table->unsignedBigInteger('protectora_id');
-            $table->foreign('particular_id')->references('id')->on('particulars');
-            $table->foreign('protectora_id')->references('id')->on('protectoras');
+            $table->foreign('particular_id')->references('id')->on('particulars')->onDelete('cascade');
+            $table->foreign('protectora_id')->references('id')->on('protectoras')->onDelete('cascade');
             $table->timestamps();
         });
     }

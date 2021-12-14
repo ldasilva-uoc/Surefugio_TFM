@@ -18,7 +18,7 @@ class CreateAnimalsTable extends Migration
             $table->unsignedBigInteger('protectora_id');
             $table->string('nombre');
             $table->enum('especie',['gato','perro','roedor']);
-            $table->enum('tamaño',['grande','mediano','pequeño']);
+            $table->enum('tamano',['grande','mediano','pequeño']);
             $table->enum('edad',['< 1 año','< - 5 año','5 - 10 año', '> 10 año']);
             $table->string('imagen')->nullable(); //para blob
             $table->text('descripcion')->nullable();
@@ -36,7 +36,7 @@ class CreateAnimalsTable extends Migration
             $table->enum('tasa_adopcion',['gratis','consultar','tasa']);
             $table->integer('tasa')->nullable();
             $table->boolean('envio');
-            $table->foreign('protectora_id')->references('id')->on('protectoras');
+            $table->foreign('protectora_id')->references('id')->on('protectoras')->onDelete('cascade');
 
 
             $table->timestamps();

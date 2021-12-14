@@ -5,6 +5,9 @@ import { AnimalEditComponent } from './animales/componentes/animal-edit/animal-e
 import { AnimalItemComponent } from './animales/componentes/animal-item/animal-item.component';
 import { AnimalListComponent } from './animales/componentes/animal-list/animal-list.component';
 import { MisAnimalesComponent } from './animales/componentes/mis-animales/mis-animales.component';
+import { FavoritosComponent } from './profile_particular/componentes/favoritos/favoritos.component';
+import { ProfileParticularComponent } from './profile_particular/componentes/profile-particular/profile-particular.component';
+import { ProfileProtectoraComponent } from './profile_protectora/componentes/profile-protectora/profile-protectora.component';
 
 import { ProtectoraItemComponent } from './protectoras/componentes/protectora-item/protectora-item.component';
 import { ProtectoraListComponent } from './protectoras/componentes/protectora-list/protectora-list.component';
@@ -29,7 +32,10 @@ const routes: Routes = [
   {path: 'protectora/animal/add', component:AnimalAddComponent},
   {path: 'protectora/animal/edit/:id', component:AnimalEditComponent},
   {path: 'registro/protectora', component:SignupProtectoraComponent},
-  {path:'registro/particular',component:SignupParticularComponent}
+  {path:'registro/particular',component:SignupParticularComponent},
+  {path: 'favoritos', component:FavoritosComponent},
+  {path:'particular/profile', component:ProfileParticularComponent},
+  {path:'profile', component:ProfileProtectoraComponent}
 
 ];
 

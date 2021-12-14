@@ -4,7 +4,7 @@ import { Actions, Effect, ofType, createEffect } from '@ngrx/effects';
 import { map, tap, catchError, mergeMap, exhaustMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ProfileProtectoraService } from '../service/profile-protectora.service';
-import { getProtectora, getProtectoraError, getProtectoraSuccess } from '../actions';
+import { editProtectora, editProtectoraError, editProtectoraSuccess, getProtectora, getProtectoraError, getProtectoraSuccess } from '../actions';
 
 @Injectable()
 export class ProfileProtectoraEffects {
@@ -26,6 +26,31 @@ export class ProfileProtectoraEffects {
       })
     )
   );
+
+  editProtectora$ = createEffect(() => 
+  this.actions$.pipe(
+      ofType(editProtectora),
+      mergeMap(({formData}) =>
+          this.profileService.editProtectora(formData).pipe(
+              map((protectora) => 
+                  editProtectoraSuccess({protectora:protectora.protectora})
+              ),
+              catchError((error) => of(editProtectoraError({payload: error})))
+          )
+      )
+  )
+)
+
+editProtectoraSuccess$ = createEffect(
+  () =>
+  this.actions$.pipe(
+      ofType(editProtectoraSuccess),
+      tap(() => 
+          this.router.navigate(['/profile'])
+      )
+      ),
+      {dispatch:false}
+);
 
 
 

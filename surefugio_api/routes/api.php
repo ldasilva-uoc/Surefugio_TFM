@@ -7,6 +7,7 @@ use App\Http\Controllers\ProtectorasController;
 use App\Http\Controllers\AnimalsController;
 use App\Http\Controllers\ParticularController;
 use App\Http\Controllers\FavoritosController;
+use App\Http\Controllers\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +29,8 @@ Route::group([
     Route::post('/protectora/register', [ProtectorasController::class, 'register']);
     Route::post('/particular/register', [ParticularController::class, 'register']);
     Route::get('/particular/{id}', [ParticularController::class, 'particular']);
-    Route::post('/protectora/edit/{id}', [ProtectorasController::class, 'editProtectora']);
-    Route::post('/particular/edit/{id}', [ParticularController::class, 'editParticular']);
+    Route::post('/protectora/edit', [ProtectorasController::class, 'editProtectora']);
+    Route::post('/particular/edit', [ParticularController::class, 'editParticular']);
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
@@ -44,7 +45,9 @@ Route::group([
     Route::post('/particular/favorito/protectora/add/{id}', [FavoritosController::class, 'addFavprotectora']);
     Route::get('/particular/favorito/protectora/deleter/{id}', [FavoritosController::class, 'deleteFavprotectora']);
     Route::get('/particular/favorito/protectora', [FavoritosController::class, 'getFavoritosProtectoras']);
-
+    Route::post('/adoptar/{idP}/{idA}', [MailController::class, 'adoptar']);
+    Route::post('/acoger/{idP}/{idA}', [MailController::class, 'acoger']);
+    Route::post('/voluntariado/{idP}', [MailController::class, 'voluntariado']);
 
     
     Route::post('/particular/favorito/animal/add/{id}', [FavoritosController::class, 'addFavAnimal']);

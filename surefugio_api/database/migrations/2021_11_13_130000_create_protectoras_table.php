@@ -19,7 +19,7 @@ class CreateProtectorasTable extends Migration
             $table->string('nombre');
             $table->string('imagen')->nullable(); //para blob
             $table->boolean('voluntariado');
-            $table->text('req_voluntariado')->nullable();
+            $table->text('req_voluntario')->nullable();
             $table->string('telefono');
             $table->string('web')->nullable();
             $table->string('facebook')->nullable();
@@ -28,7 +28,7 @@ class CreateProtectorasTable extends Migration
             $table->string('pais');
             $table->string('ciudad');
             $table->string('provincia');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

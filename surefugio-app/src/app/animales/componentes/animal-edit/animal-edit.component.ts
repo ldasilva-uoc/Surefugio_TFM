@@ -35,8 +35,12 @@ export class AnimalEditComponent implements OnInit {
   public tasa_adopcion: FormControl;
   public tasa: FormControl;
   public envio: FormControl;
-
+  public imagenombre?: any;
   public animalForm: FormGroup;
+
+  public haveTasa: Boolean;
+
+  public changeImage:boolean =false;
 
   constructor(private route: ActivatedRoute, private store:Store<AppState>,private formBuilder: FormBuilder) { }
 
@@ -50,6 +54,8 @@ export class AnimalEditComponent implements OnInit {
         var animal = animales_list.find(({id})=> id === id_)
         this.animal = animal;
         console.log(this.animal)
+
+        this.haveTasa = this.animal?.tasa_adopcion === 'tasa';
       });
     })
 
@@ -73,7 +79,7 @@ export class AnimalEditComponent implements OnInit {
       this.tasa_adopcion = new FormControl(this.animal?.tasa_adopcion),
       this.tasa = new FormControl(this.animal?.tasa),
       this.envio = new FormControl(this.animal?.envio),
-      this.tamano = new FormControl(this.animal?.tamaño)
+      this.tamano = new FormControl(this.animal?.tamano)
 
       this.animalForm = this.formBuilder.group({
         nombre: this.nombre,
@@ -100,6 +106,27 @@ export class AnimalEditComponent implements OnInit {
 
   }
 
+  fieldsChange(target:any):void {
+    this.changeImage = true;
+    if(target === "tasa")
+    {
+      this.haveTasa = true
+    }
+    else{
+      this.haveTasa = false
+    }
+  }
+
+  onFileChange(event:any){
+
+    this.imagenombre= event.target.files[0];
+    console.log(this.imagen);
+  }
+
+
+
+
+
   public editAnimal(){
     const animal: Animal = {
       id: this.animal?.id,
@@ -123,10 +150,38 @@ export class AnimalEditComponent implements OnInit {
       tasa_adopcion: this.tasa_adopcion.value,
       tasa: this.tasa.value,
       envio: this.envio.value,
-      tamaño: this.tamano.value,
+      tamano: this.tamano.value,
     }
 
-    this.store.dispatch(AnimalAction.editAnimal({animal}));
+
+    const formData = new FormData();
+    formData.append('id', ""+ this.animal?.id);
+    formData.append('nombre', this.nombre.value);
+    formData.append('especie',this.especie.value,);
+    if(this.changeImage ){
+      formData.append('imagen', this.imagenombre);
+    }
+    formData.append('edad', this.edad.value);
+    formData.append('descripcion', this.descripcion.value);
+    formData.append('sexo', this.sexo.value);
+    formData.append('pais', this.pais.value);
+    formData.append('ciudad', this.ciudad.value);
+    formData.append('provincia', this.provincia.value);
+    formData.append('adopcion', +this.adopcion.value +"");
+    formData.append('tasa_adopcion', this.tasa_adopcion.value);
+    formData.append('acogida', +this.acogida.value +"");
+    formData.append('urgente', +this.urgente.value+"");
+    formData.append('vacunado', +this.vacunado.value+"");
+    formData.append('desparasitado', +this.desparasitado.value+"");
+    formData.append('esterilizado', +this.esterilizado.value+"");
+    formData.append('microchip', +this.microchip.value+"");
+    formData.append('envio', +this.adopcion.value+"");
+    formData.append('tasa', this.tasa.value);
+    formData.append('tamano', this.tamano.value);
+
+
+
+    this.store.dispatch(AnimalAction.editAnimal({formData}));
   }
 
 }

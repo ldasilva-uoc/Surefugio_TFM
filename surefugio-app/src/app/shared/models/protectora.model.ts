@@ -5,7 +5,7 @@ export class Protectora{
     public nombre:string;
     public imagen?:any;
     public voluntariado:boolean;
-    public req_voluntariado?:string;
+    public req_voluntario?:string;
     public telefono:string;
     public web?:string;
     public facebook?:string;

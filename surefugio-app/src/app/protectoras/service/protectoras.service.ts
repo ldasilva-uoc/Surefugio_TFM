@@ -12,4 +12,8 @@ export class ProtectorasService {
   getProtectoras(): Observable<any> {
     return this.http.get('http://127.0.0.1:8000/api/list/protectoras');
   }
+
+  Voluntariado(idP: number|undefined){
+    return this.http.post('http://127.0.0.1:8000/api/auth/voluntariado/'+idP,null)
+  }
 }

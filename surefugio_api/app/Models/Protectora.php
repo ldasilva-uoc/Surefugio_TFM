@@ -16,7 +16,7 @@ class Protectora extends Model
         'pais',
         'ciudad',
         'provincia',
-        'req_voluntariado',
+        'req_voluntario',
         'web',
         'facebook',
         'instagram',

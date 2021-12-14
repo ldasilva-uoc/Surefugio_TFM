@@ -5,7 +5,7 @@ export class Animal{
     public imagen?: any;
     public edad:string;
     public descripcion?:string;
-    public tamaño:string
+    public tamano:string
     public sexo:string;
     public pais:string;
     public ciudad:string;

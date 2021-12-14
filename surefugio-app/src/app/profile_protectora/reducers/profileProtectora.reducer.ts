@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from "@ngrx/store";
 import { Protectora } from "src/app/shared/models/protectora.model";
-import { getProtectora, getProtectoraError, getProtectoraSuccess } from "../actions";
+import { editProtectora, editProtectoraError, editProtectoraSuccess, getProtectora, getProtectoraError, getProtectoraSuccess } from "../actions";
 
 
 export interface ProfileProtectoraState {
@@ -30,6 +30,24 @@ const _profileProtectoraReducer = createReducer(
         pending: false,
     })),
     on(getProtectoraError, (state, { payload }) => ({
+        ...state,
+        error:payload,
+        pending: false,
+    })),
+
+    on(editProtectora, (state) => ({
+        ...state,
+        error: null,
+        pending: true,
+    })),
+    on(editProtectoraSuccess, (state, action) => ({
+        ...state,
+        protectora:action.protectora,
+        loggedIn: true,
+        error: null,
+        pending: false,
+    })),
+    on(editProtectoraError, (state, { payload }) => ({
         ...state,
         error:payload,
         pending: false,

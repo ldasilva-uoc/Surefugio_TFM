@@ -17,6 +17,9 @@ import { HeaderComponent } from './shared/views/header/header.component';
 import { ProtectoraModule } from './protectoras/protectora.module';
 import { UserModule } from './user/user.module';
 import { AuthInterceptor } from './shared/interceptor/auth.interceptor';
+import { FavoritosComponent } from './profile_particular/componentes/favoritos/favoritos.component';
+import { ProfileParticularComponent } from './profile_particular/componentes/profile-particular/profile-particular.component';
+import { ProfileProtectoraComponent } from './profile_protectora/componentes/profile-protectora/profile-protectora.component';
 
 
 
@@ -27,12 +30,16 @@ import { AuthInterceptor } from './shared/interceptor/auth.interceptor';
     AppComponent,
     PortadaComponent,
     HeaderComponent,
+    FavoritosComponent,
+    ProfileParticularComponent,
+    ProfileProtectoraComponent,
  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     FormsModule,
     AnimalModule,
     ProtectoraModule,

@@ -1,15 +1,21 @@
 /* Stackoverflow preview fix, please ignore */
-.navbar-collapse {
-  justify-content: end;
-}
+
 .navbar {
-  padding: 12px;
+  margin-bottom: 0px;
+}
+
+.menucompleto {
+  background-color: #f0f2e8 !important;
+  padding: 0;
 }
 
 .navbar-brand {
   padding-left: 8px;
 }
 
+.nav-link {
+  color: black;
+}
 ul {
   list-style: none;
   padding: 0;
@@ -18,4 +24,21 @@ ul {
 .menu,
 .dropdownmenu {
   justify-content: end !important;
+}
+
+img {
+  width: 100%;
+}
+.menu__user {
+  width: 100%;
+  background-color: #f0f2e8;
+  z-index: 2;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+.navbar-brand {
+  width: 10rem;
+}
+
+.menu__components {
 }
