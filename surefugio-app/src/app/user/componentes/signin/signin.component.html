@@ -1,9 +1,9 @@
 
 <div class="fondo">
 
-    <div class="formulario row justify-content-center rounded" >
+    <div class="formulario row justify-content-center rounded shadow p-3 mb-5 bg-body" >
         <div>
-            <p>Pasos 1 de 2</p>
+            <p class="fw-bold">Pasos 1 de 2</p>
         </div>
         <h1 class="text-center">Registro usuario</h1>
       
@@ -14,8 +14,8 @@
                     <label for="email">Email</label>
                     <input type="email" [formControl]="email" class="form-control" placeholder="User E-mail">
                     <span style="color: red;" *ngIf="siginForm.get('email')?.errors && (siginForm.get('email')?.touched || siginForm.get('email')?.dirty)">
-                        <span *ngIf="siginForm.get('email')?.errors?.required">Email is required</span> 
-                        <span *ngIf="siginForm.get('email')?.errors?.email">Email doesn't have a correct format</span>   
+                        <span *ngIf="siginForm.get('email')?.errors?.required">Campo obligatorio</span> 
+                        <span *ngIf="siginForm.get('email')?.errors?.email">El formato del email es incorrecto</span>   
                     </span>
                  </div>
                 <!-- Password -->
@@ -23,18 +23,20 @@
                     <label for="password">Contraseña</label>
                     <input type="password" [formControl]="password" class="form-control" placeholder="User Password">
                     <span style="color: red;" *ngIf="siginForm.get('password')?.errors && (siginForm.get('password')?.touched || siginForm.get('password')?.dirty)">
-                        <span *ngIf="siginForm.get('password')?.errors?.required">User pwd is required</span>    
+                        <span *ngIf="siginForm.get('password')?.errors?.required">Campo obligatorio</span>    
+                        <span *ngIf="siginForm.get('password')?.errors?.minlength">La contraseña debe tener minimo 8 caracteres</span>    
                     </span>
                 </div>
                 <div class="col-12">
                     <label for="password_confirmation">Repite Contraseña</label>
-                    <input type="password_confirmation" [formControl]="password_confirmation" class="form-control" placeholder="Repite contraseña">
+                    <input type="password" [formControl]="password_confirmation" class="form-control" placeholder="Repite contraseña">
                     <span style="color: red;" *ngIf="siginForm.get('password_confirmation')?.errors && (siginForm.get('password_confirmation')?.touched || siginForm.get('password_confirmation')?.dirty)">
-                        <span *ngIf="siginForm.get('password_confirmation')?.errors?.required">User pwd is required</span>    
+                        <span *ngIf="siginForm.get('password_confirmation')?.errors?.required">Campo obligatorio</span>  
+                        <div *ngIf="siginForm.get('password_confirmation')?.errors.confirmedValidator">Contraseña y repite contraseña deben ser iguales</div>  
                     </span>
                 </div>
 
-                <div class="col-12 row justify-content-center" style="padding: 0;">
+                <div class="col-12 row justify-content-center tipo_usuario" style="padding: 0;">
                     <label class="col-12" >Que tipo de usuario eres</label>
                     <div class="col-md-6 usertype" >
                         <p>Protectora</p>
@@ -46,9 +48,14 @@
                     </div>
                 </div>
 
+               
+                <div class="border-end border-primary border-4 text-end"  style="padding: 1%;" *ngIf="loginState$.error && submit">
+                    <p>Ya existe un usuario con ese email</p>    
+                </div>
                 <div class="col-12 justify-content-center row botones">
+                
                     <button class="btn btn-primary my-4" type="submit" [disabled]="!siginForm.valid">Siguiente</button>  
-                    <button class="btn btn-secondary my-4" type="submit" >Cancelar</button>
+                    <button class="btn btn-secondary my-4" type="submit"  [routerLink]="['/login']" >Cancelar</button>
                 </div>
 
             </form>    

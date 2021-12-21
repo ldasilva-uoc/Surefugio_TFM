@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { deleteAnimal, getAllAnimales } from 'src/app/animales/actions';
 import { AppState } from 'src/app/app.reducer';
@@ -16,10 +17,17 @@ export class MisAnimalesComponent implements OnInit {
   animales: Animal[];
   id_protectora$: number|undefined;
 
-
-  constructor(private store: Store<AppState>) { }
+  public islogin:boolean;
+  constructor(private store: Store<AppState>,private router: Router) { 
+    this.store.select('UserApp').subscribe(login => {
+      this.islogin = login.loggedIn;
+    })
+  }
 
   ngOnInit(): void {
+    if(!this.islogin){
+      this.router.navigate(['/portada']);
+    }
     this.store.select('profileProtectoraApp').subscribe(protectora => {
       this.id_protectora$ = protectora.protectora?.id;
       console.log(protectora.protectora);
@@ -29,6 +37,7 @@ export class MisAnimalesComponent implements OnInit {
     });
 
     this.store.dispatch(getAllAnimales());
+
   }
 
   deleteAnimal(animal: Animal){

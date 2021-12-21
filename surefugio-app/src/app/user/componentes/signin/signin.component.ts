@@ -5,6 +5,7 @@ import { AppState } from 'src/app/app.reducer';
 import { User } from 'src/app/shared/models/user.model';
 import { UserState } from '../../reducers';
 import * as UserAction from '../../actions';
+import { ConfirmedValidator } from 'src/app/shared/Validators/checkValidator';
 
 @Component({
   selector: 'app-signin',
@@ -20,6 +21,7 @@ export class SigninComponent implements OnInit {
   public messageError: any;
   loginState$: UserState;
   siginForm: FormGroup;
+  public submit: Boolean;
   public errorsigninLogin: any;
 
   public user: User;
@@ -34,9 +36,9 @@ export class SigninComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.submit=false;
     this.email = new FormControl('', [Validators.required , Validators.email]);
-    this.password = new FormControl('', [Validators.required]);
+    this.password = new FormControl('', [Validators.required,Validators.minLength(8)]);
     this.password_confirmation = new FormControl('', [Validators.required]);
 
     this.siginForm = this.formBuilder.group({
@@ -44,7 +46,7 @@ export class SigninComponent implements OnInit {
       email: this.email,
       password: this.password,
       password_confirmation:this.password_confirmation,
-    });
+    }, { validator: ConfirmedValidator('password', 'password_confirmation') });
   }
 
   isProtectora()
@@ -58,6 +60,7 @@ export class SigninComponent implements OnInit {
   }
 
   public addUser(){
+    this.submit= true;
     this.user = {
       email: this.email.value,
       password: this.password.value,

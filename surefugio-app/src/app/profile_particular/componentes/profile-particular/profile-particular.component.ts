@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducer';
 import { Particular } from 'src/app/shared/models/particular.model';
@@ -33,12 +34,13 @@ export class ProfileParticularComponent implements OnInit {
   public QuieroEditar:boolean=false;
   public user$: User;
   public particular:Particular;
-  
-  constructor(private store:Store<AppState>, private formBuilder: FormBuilder) { 
+  public islogin:boolean;
+  constructor(private store:Store<AppState>, private formBuilder: FormBuilder,private router: Router) { 
     this.store.select('UserApp').subscribe(user=> {
       this.messageError = user.error
       this.UserState$ = user;
       this.user$ = user.auth;
+      this.islogin = user.loggedIn;
     })
 
     this.store.select('profileParticularApp').subscribe(particular=>{
@@ -54,6 +56,9 @@ export class ProfileParticularComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(!this.islogin){
+      this.router.navigate(['/portada']);
+    }
     this.QuieroEditar = false;
     this.formulario();
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducer';
 import { Animal } from 'src/app/shared/models/animal.model';
@@ -41,10 +41,17 @@ export class AnimalEditComponent implements OnInit {
   public haveTasa: Boolean;
 
   public changeImage:boolean =false;
-
-  constructor(private route: ActivatedRoute, private store:Store<AppState>,private formBuilder: FormBuilder) { }
+  public islogin:boolean;
+  constructor(private router: Router,private route: ActivatedRoute, private store:Store<AppState>,private formBuilder: FormBuilder) { 
+    this.store.select('UserApp').subscribe(login => {
+      this.islogin = login.loggedIn;
+    })
+  }
 
   ngOnInit(): void {
+    if(!this.islogin){
+      this.router.navigate(['/portada']);
+    }
     this.route.params.subscribe(params => {
       const id_ = +params.id;
       console.log(id_)
@@ -107,7 +114,7 @@ export class AnimalEditComponent implements OnInit {
   }
 
   fieldsChange(target:any):void {
-    this.changeImage = true;
+   
     if(target === "tasa")
     {
       this.haveTasa = true
@@ -118,7 +125,7 @@ export class AnimalEditComponent implements OnInit {
   }
 
   onFileChange(event:any){
-
+    this.changeImage = true;
     this.imagenombre= event.target.files[0];
     console.log(this.imagen);
   }
@@ -128,30 +135,7 @@ export class AnimalEditComponent implements OnInit {
 
 
   public editAnimal(){
-    const animal: Animal = {
-      id: this.animal?.id,
-      protectora_id:this.animal?.protectora_id,
-      nombre: this.nombre.value,
-      especie: this.especie.value,
-      //imagen: this.imagen.value,
-      edad: this.edad.value,
-      descripcion: this.descripcion.value,
-      sexo: this.sexo.value,
-      pais: this.pais.value,
-      ciudad: this.ciudad.value,
-      provincia: this.provincia.value,
-      adopcion: this.adopcion.value,
-      acogida: this.acogida.value,
-      urgente: this.urgente.value,
-      vacunado: this.vacunado.value,
-      desparasitado: this.desparasitado.value,
-      esterilizado: this.esterilizado.value,
-      microchip: this.microchip.value,
-      tasa_adopcion: this.tasa_adopcion.value,
-      tasa: this.tasa.value,
-      envio: this.envio.value,
-      tamano: this.tamano.value,
-    }
+
 
 
     const formData = new FormData();
@@ -176,7 +160,14 @@ export class AnimalEditComponent implements OnInit {
     formData.append('esterilizado', +this.esterilizado.value+"");
     formData.append('microchip', +this.microchip.value+"");
     formData.append('envio', +this.adopcion.value+"");
-    formData.append('tasa', this.tasa.value);
+    if(this.tasa_adopcion.value === "gratis"||this.tasa_adopcion.value === "consultar"){
+      formData.append('tasa', "0");
+    }
+    else{
+      formData.append('tasa',this.tasa.value);
+    }
+
+    
     formData.append('tamano', this.tamano.value);
 
 

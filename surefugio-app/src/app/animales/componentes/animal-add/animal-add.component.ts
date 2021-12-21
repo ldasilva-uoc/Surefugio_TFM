@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducer';
 import { Animal } from 'src/app/shared/models/animal.model';
@@ -43,14 +44,22 @@ export class AnimalAddComponent implements OnInit {
   
   public haveTasa: Boolean;
   public haveImage:Boolean = false;
-
-  constructor( private store:Store<AppState>, private formBuilder: FormBuilder) { 
-
-
+  public islogin:boolean;
+  constructor( private store:Store<AppState>, private formBuilder: FormBuilder,private router: Router) { 
+    this.store.select('UserApp').subscribe(login => {
+      this.islogin = login.loggedIn;
+    })
   }
+
+  
 
 
   ngOnInit(): void {
+
+    if(!this.islogin){
+      this.router.navigate(['/portada']);
+    }
+
     this.bSubmitted = false;
     this.nombre = new FormControl('', [Validators.required]);
     this.especie = new FormControl('', [Validators.required]);
@@ -140,7 +149,12 @@ export class AnimalAddComponent implements OnInit {
     formData.append('esterilizado', +this.esterilizado.value+"");
     formData.append('microchip', +this.microchip.value+"");
     formData.append('envio', +this.adopcion.value+"");
-    formData.append('tasa', this.tasa.value);
+    if(this.tasa_adopcion.value === "gratis"||this.tasa_adopcion.value === "consultar"){
+      formData.append('tasa', "0");
+    }
+    else{
+      formData.append('tasa',this.tasa.value);
+    }
     formData.append('tamano', this.tamano.value);
 
 

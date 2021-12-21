@@ -57,21 +57,21 @@
                 <a href="{{protectora?.instagram}}" target="_blank" *ngIf="protectora?.instagram"><img src="../../../../assets/imagenes/insta.png" class="img_redes"></a>
               </div>
           </div>
-          <div class="col-md-8 row justify-content-between">
+          <div class="col-md-8 row justify-content-between datos__animal">
               <div class="cuadrado col-12">
                   <h3>Mis datos</h3>
                   <ul>
                       <li class="row justify-content-between">
-                          <p class="col-6">Teléfono</p>
+                          <p class="col-6 fw-bold">Teléfono</p>
                           <p class="col-6 right_text">{{protectora?.telefono}}</p>
                       </li>
                       <li class="row justify-content-between">
-                          <p class="col-6">Búsca voluntarios?</p>
+                          <p class="col-6 fw-bold">Búsca voluntarios?</p>
                           <p *ngIf="protectora?.voluntariado" class="col-6 right_text">Sí</p>
                           <p *ngIf="!protectora?.voluntariado" class="col-6 right_text">No</p>
                       </li>
                       <li class="row justify-content-between" *ngIf="protectora?.voluntariado">
-                          <p class="">Requisitos para voluntariado</p>
+                          <p class="fw-bold">Requisitos para voluntariado:</p>
                           <p class="">{{protectora?.req_voluntario}}</p>
                       </li>
                   </ul>

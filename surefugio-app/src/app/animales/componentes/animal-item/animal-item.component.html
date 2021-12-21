@@ -68,25 +68,25 @@
                     Acogida
                 </div>
             </div>
-            <div class="col-md-8 row justify-content-between">
+            <div class="col-md-8 row justify-content-between datos__animal">
                 <div class="cuadrado col-md-5">
                     <h3>Mis datos</h3>
                     <ul>
                         <li class="row justify-content-between">
-                            <p class="col-6">Especie</p>
+                            <p class="col-6 fw-bold">Especie</p>
                             <p class="col-6 right_text">{{animal?.especie}}</p>
                         </li>
                         <li class="row justify-content-between">
-                            <p class="col-6">Años</p>
+                            <p class="col-6 fw-bold">Años</p>
                             <p class="col-6 right_text">{{animal?.edad}}</p>
                         </li>
                         <li class="row justify-content-between">
-                            <p class="col-6">Sexo</p>
+                            <p class="col-6 fw-bold">Sexo</p>
                             <p class="col-6 right_text">{{animal?.sexo}}</p>
                         </li>
                         <li class="row justify-content-between">
-                            <p class="col-6">Tamaño</p>
-                            <p class="col-6 right_text "></p>
+                            <p class="col-6 fw-bold">Tamaño</p>
+                            <p class="col-6 right_text">{{animal?.tamano}}</p>
                         </li>
                     </ul>
                 </div>
@@ -95,22 +95,22 @@
                     <h3>Datos de entrega</h3>
                     <ul>
                         <li class="row justify-content-between">
-                            <p class="col-6">Vacunado</p>
+                            <p class="col-6 fw-bold">Vacunado</p>
                             <p *ngIf="animal?.vacunado" class="col-6 right_text">Sí</p>
                             <p *ngIf="!animal?.vacunado" class="col-6 right_text">No</p>
                         </li>
                         <li class="row justify-content-between">
-                            <p class="col-6">Desparasitado</p>
+                            <p class="col-6 fw-bold">Desparasitado</p>
                             <p *ngIf="animal?.desparasitado" class="col-6 right_text">Sí</p>
                             <p *ngIf="!animal?.desparasitado" class="col-6 right_text">No</p>
                         </li>
                         <li class="row justify-content-between">
-                            <p class="col-6">Esterilizado</p>
+                            <p class="col-6 fw-bold">Esterilizado</p>
                             <p *ngIf="animal?.esterilizado" class="col-6 right_text">Sí</p>
                             <p *ngIf="!animal?.esterilizado" class="col-6 right_text">No</p>
                         </li>
                         <li class="row justify-content-between">
-                            <p class="col-6">Con microchip</p>
+                            <p class="col-6 fw-bold">Con microchip</p>
                             <p *ngIf="animal?.microchip" class="col-6 right_text">Sí</p>
                             <p *ngIf="!animal?.microchip" class="col-6 right_text">No</p>
                         </li>

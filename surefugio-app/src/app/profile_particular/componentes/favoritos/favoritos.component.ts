@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { getAllAnimales } from 'src/app/animales/actions';
 import { AppState } from 'src/app/app.reducer';
+import { getAllProtectoras } from 'src/app/protectoras/actions';
 import { Animal } from 'src/app/shared/models/animal.model';
 import { Protectora } from 'src/app/shared/models/protectora.model';
 import { deleterAnimalFav, deleterProtectorasFav } from '../../actions';
@@ -15,8 +18,11 @@ export class FavoritosComponent implements OnInit {
   public protectoras!: Protectora[] ;
   public animales: Animal[];
   public prot: any[];
-  constructor(private store:Store<AppState>) { 
-
+  public islogin:boolean;
+  constructor(private store:Store<AppState>,private router: Router) { 
+    this.store.select('UserApp').subscribe(login => {
+      this.islogin = login.loggedIn;
+    })
   this.store.select('profileParticularApp').subscribe(particular=>{
 
     this.store.select('protectorasApp').subscribe(protectoras => {
@@ -34,7 +40,11 @@ export class FavoritosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    if(!this.islogin){
+      this.router.navigate(['/portada']);
+    }
+    this.store.dispatch(getAllProtectoras());
+    this.store.dispatch(getAllAnimales());
   }
 
   RemoveFavAnimal(animal:Animal){

@@ -1,0 +1,13 @@
+footer {
+  width: 100%;
+  background-color: #f0f2e8;
+  margin-top: 40%;
+}
+
+img {
+  width: 200px;
+  margin-bottom: 2%;
+}
+.inner {
+  padding: 5%;
+}

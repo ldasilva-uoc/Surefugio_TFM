@@ -24,6 +24,7 @@ export class VoluntariadoListComponent implements OnInit {
     
  
     this.store.dispatch(getAllProtectoras());
+ 
 
   }
 

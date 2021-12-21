@@ -19,7 +19,7 @@ class CreateAnimalsTable extends Migration
             $table->string('nombre');
             $table->enum('especie',['gato','perro','roedor']);
             $table->enum('tamano',['grande','mediano','pequeño']);
-            $table->enum('edad',['< 1 año','< - 5 año','5 - 10 año', '> 10 año']);
+            $table->enum('edad',['< 1 año','1 - 5 año','5 - 10 año', '> 10 año']);
             $table->string('imagen')->nullable(); //para blob
             $table->text('descripcion')->nullable();
             $table->enum('sexo',['macho','hembra']);

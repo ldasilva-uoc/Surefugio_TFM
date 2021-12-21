@@ -1,9 +1,9 @@
 
 <div class="fondo">
 
-    <div class="formulario row justify-content-center rounded" >
+    <div class="formulario row justify-content-center rounded rounded shadow p-3 mb-5 bg-body" >
         <div>
-            <p>Pasos 2 de 2</p>
+            <p class="fw-bold" >Pasos 2 de 2</p>
         </div>
         <h1 class="text-center">Registro usuario</h1>
       
@@ -14,7 +14,7 @@
                     <label for="nombre">Nombre</label>
                     <input type="text" [formControl]="nombre" class="form-control" placeholder="Nombre de la protectora">
                     <span style="color: red;" *ngIf="protectoraForm.get('nombre')?.errors && (protectoraForm.get('nombre')?.touched || protectoraForm.get('nombre')?.dirty)">
-                        <span *ngIf="protectoraForm.get('nombre')?.errors?.required">nombre is required</span> 
+                        <span *ngIf="protectoraForm.get('nombre')?.errors?.required">Campo obligatorio</span> 
                     </span>
                  </div>
 
@@ -32,7 +32,7 @@
     
                 <div class="col-12" *ngIf="needvoluntariado">
                     <label for="nombre">Requisitos para voluntarios</label>
-                    <textarea type="text" [formControl]="req_voluntariado" class="form-control" placeholder="Requisitos para voluntarios">
+                    <textarea type="text" [formControl]="req_voluntario" class="form-control" placeholder="Requisitos para voluntarios">
                     </textarea>
                 </div>
 
@@ -40,7 +40,7 @@
                     <label for="telefono">Telefono</label>
                     <input type="text" [formControl]="telefono" class="form-control" placeholder="Telefono">
                     <span style="color: red;" *ngIf="protectoraForm.get('telefono')?.errors && (protectoraForm.get('telefono')?.touched || protectoraForm.get('telefono')?.dirty)">
-                        <span *ngIf="protectoraForm.get('telefono')?.errors?.required">telefono is required</span> 
+                        <span *ngIf="protectoraForm.get('telefono')?.errors?.required">Campo obligatorio</span> 
                     </span>
                 </div>
                 

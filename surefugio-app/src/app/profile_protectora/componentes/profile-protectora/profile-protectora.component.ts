@@ -7,6 +7,7 @@ import { User } from 'src/app/shared/models/user.model';
 import { UserState } from 'src/app/user/reducers';
 import { ProfileProtectoraState } from '../../reducers';
 import * as UserAction from '../../actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile-protectora',
@@ -40,14 +41,15 @@ export class ProfileProtectoraComponent implements OnInit {
   protectoraForm: FormGroup;
 
   public QuieroEditar:boolean;
+  public islogin:boolean;
 
 
-
-  constructor(private store:Store<AppState>, private formBuilder: FormBuilder) { 
+  constructor(private store:Store<AppState>, private formBuilder: FormBuilder, private router: Router) { 
     this.store.select('UserApp').subscribe(user=> {
       this.messageError = user.error
       this.userState$ = user;
       this.user$ = user.auth;
+      this.islogin = user.loggedIn;
     })
 
     this.store.select('profileProtectoraApp').subscribe(protectora=>{
@@ -64,7 +66,9 @@ export class ProfileProtectoraComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    if(!this.islogin){
+      this.router.navigate(['/portada']);
+    }
     this.QuieroEditar = false;
     this.formulario()
 

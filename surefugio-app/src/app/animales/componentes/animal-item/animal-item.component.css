@@ -105,3 +105,9 @@ h3 {
   border-color: #f28a24 !important ;
   background-color: #ffd9b3;
 }
+
+@media only screen and (max-width: 767px) {
+  .datos__animal {
+    padding-top: 10%;
+  }
+}

@@ -1,9 +1,14 @@
 
 <div class="fondo">
 
-    <div class="formulario row justify-content-center rounded" >
+    <div class="formulario row justify-content-center rounded shadow p-3 mb-5 bg-body" >
 
         <h1 class="text-center">Perfil usuario</h1>
+
+        <div class="imagenes row justify-content-center ">
+            <img src="http://127.0.0.1:8000/storage/{{particular?.imagen}}" alt="..." *ngIf="particular?.imagen" class="rounded-circle">
+            <img src="../../../../assets/imagenes/particular.jpg" alt="..." *ngIf="!particular?.imagen" class="rounded-circle">  
+        </div>
       
         <div>    
             <form [formGroup]="particularForm" (ngSubmit)="EditParticular()" class="row justify-content-center">    
@@ -12,7 +17,7 @@
                     <label for="nombre">Nombre</label>
                     <input type="text" [formControl]="nombre" class="form-control" placeholder="Nombre">
                     <span style="color: red;" *ngIf="particularForm.get('nombre')?.errors && (particularForm.get('nombre')?.touched || particularForm.get('nombre')?.dirty)">
-                        <span *ngIf="particularForm.get('nombre')?.errors?.required">nombre is required</span> 
+                        <span *ngIf="particularForm.get('nombre')?.errors?.required">Campo obligatorio</span> 
                     </span>
                  </div>
 
@@ -20,7 +25,7 @@
                     <label for="apellido">Apellido</label>
                     <input type="text" [formControl]="apellido" class="form-control" placeholder="Apellido">
                     <span style="color: red;" *ngIf="particularForm.get('apellido')?.errors && (particularForm.get('apellido')?.touched || particularForm.get('apellido')?.dirty)">
-                        <span *ngIf="particularForm.get('apellido')?.errors?.required">apellido is required</span> 
+                        <span *ngIf="particularForm.get('apellido')?.errors?.required">Campo obligatorio</span> 
                     </span>
                  </div>
                  
@@ -34,7 +39,7 @@
                     <label for="telefono">Telefono</label>
                     <input type="text" [formControl]="telefono" class="form-control" placeholder="Telefono">
                     <span style="color: red;" *ngIf="particularForm.get('telefono')?.errors && (particularForm.get('telefono')?.touched || particularForm.get('telefono')?.dirty)">
-                        <span *ngIf="particularForm.get('telefono')?.errors?.required">telefono is required</span> 
+                        <span *ngIf="particularForm.get('telefono')?.errors?.required">Campo obligatorio</span> 
                     </span>
                 </div>
                 

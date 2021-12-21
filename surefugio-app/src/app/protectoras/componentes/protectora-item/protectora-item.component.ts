@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { getAllAnimales } from 'src/app/animales/actions';
 import { AppState } from 'src/app/app.reducer';
 import { addProtectorasFav, deleterProtectorasFav, voluntariado } from 'src/app/profile_particular/actions';
 import { ProfileParticularState } from 'src/app/profile_particular/reducers';
 import { Animal } from 'src/app/shared/models/animal.model';
 import { Protectora } from 'src/app/shared/models/protectora.model';
+import { getAllProtectoras } from '../../actions';
 import { ProtectorasService } from '../../service/protectoras.service';
 
 @Component({
@@ -69,6 +71,8 @@ export class ProtectoraItemComponent implements OnInit {
     this.buttonavoluntariado=false;
     this.buttonaddfavorito=false
     this.buttondeletefavorito=false
+    this.store.dispatch(getAllAnimales());
+    this.store.dispatch(getAllProtectoras());
   }
 
   AddFav(){

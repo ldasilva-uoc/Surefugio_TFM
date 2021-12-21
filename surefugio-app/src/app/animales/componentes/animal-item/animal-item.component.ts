@@ -4,8 +4,10 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducer';
 import { acoger, addAnimalFav, adoptar, deleterAnimalFav } from 'src/app/profile_particular/actions';
 import { ProfileParticularState } from 'src/app/profile_particular/reducers';
+import { getAllProtectoras } from 'src/app/protectoras/actions';
 import { Animal } from 'src/app/shared/models/animal.model';
 import { MessageService } from 'src/app/shared/service/message.service';
+import { getAllAnimales } from '../../actions';
 import { AnimalesService } from '../../service/animales.service';
 
 @Component({
@@ -80,6 +82,8 @@ export class AnimalItemComponent implements OnInit {
     this.buttonacoger=false
     this.buttonaddfavorito=false
     this.buttondeletefavorito=false
+    this.store.dispatch(getAllProtectoras());
+    this.store.dispatch(getAllAnimales());
   }
 
   AddFav(){

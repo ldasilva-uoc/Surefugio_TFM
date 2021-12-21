@@ -2,15 +2,22 @@
   width: 40%;
   margin-top: 5%;
   padding: 2%;
-  background-color: #f0f2e8;
 }
 
 h1 {
   margin-bottom: 5%;
+  font-family: "Maven Pro", sans-serif;
+  font-weight: bold;
+  color: #f28a24;
 }
 
 button {
   width: 30%;
+}
+
+.btn-primary {
+  background-color: #f28a24 !important;
+  border-color: #f28a24 !important ;
 }
 
 .registrarse p,
@@ -18,26 +25,7 @@ button {
   text-align: center;
 }
 
-img {
-  width: 60%;
-}
-
-.usertype {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-}
-
-.select {
-  border: 6px solid red;
-}
-.noselect {
-  border: 6px solid gray;
-}
-
 .fondo {
-  background-color: #f28a24;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,6 +42,11 @@ form div {
 button {
   width: 100%;
   margin-top: 0 !important;
+}
+
+.error {
+  border-color: #e94649 !important ;
+  background-color: #f8d2d2;
 }
 @media (max-width: 768px) {
   .formulario {

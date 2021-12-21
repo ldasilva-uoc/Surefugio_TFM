@@ -20,6 +20,7 @@ import { AuthInterceptor } from './shared/interceptor/auth.interceptor';
 import { FavoritosComponent } from './profile_particular/componentes/favoritos/favoritos.component';
 import { ProfileParticularComponent } from './profile_particular/componentes/profile-particular/profile-particular.component';
 import { ProfileProtectoraComponent } from './profile_protectora/componentes/profile-protectora/profile-protectora.component';
+import { FooterComponent } from './shared/views/footer/footer.component';
 
 
 
@@ -33,6 +34,7 @@ import { ProfileProtectoraComponent } from './profile_protectora/componentes/pro
     FavoritosComponent,
     ProfileParticularComponent,
     ProfileProtectoraComponent,
+    FooterComponent,
  
   ],
   imports: [

@@ -1,12 +1,40 @@
-.formulario {
-  width: 30%;
+.fondo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  margin-bottom: 5%;
+  font-family: "Maven Pro", sans-serif;
+  font-weight: bold;
+  color: #f28a24;
+}
+.btn-primary {
+  background-color: #f28a24 !important;
+  border-color: #f28a24 !important ;
 }
 
+.input_form {
+  margin-bottom: 2%;
+}
+
+.header {
+  margin-bottom: 4%;
+}
+h2 {
+  font-family: "Maven Pro", sans-serif;
+  font-weight: bold;
+  color: #7b8676;
+}
 button {
-  width: 30%;
+  margin-left: 2%;
+  margin-right: 2%;
 }
-
-.registrarse p,
-.registrarse a {
-  text-align: center;
+.buttons {
+  margin-top: 3%;
+}
+.formulario {
+  width: 70%;
+  margin-top: 5%;
+  padding: 2%;
 }

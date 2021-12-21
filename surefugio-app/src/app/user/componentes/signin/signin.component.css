@@ -2,7 +2,6 @@
   width: 40%;
   margin-top: 5%;
   padding: 2%;
-  background-color: #f0f2e8;
 }
 
 h1 {
@@ -26,7 +25,7 @@ button {
 }
 
 img {
-  width: 60%;
+  width: 30%;
 }
 
 .usertype {
@@ -41,8 +40,6 @@ img {
   -moz-box-shadow: 0px 0px 16px 11px rgba(248, 179, 108, 0.79);
   box-shadow: 0px 0px 16px 11px rgba(248, 179, 108, 0.79);
 }
-.noselect {
-}
 
 .fondo {
   display: flex;
@@ -55,12 +52,20 @@ form div {
 }
 
 .botones {
-  margin-top: 15% !important;
+  margin-top: 3% !important;
 }
 
 button {
   width: 100%;
   margin-top: 0 !important;
+}
+.tipo_usuario {
+  margin-bottom: 8%;
+}
+
+.border-primary {
+  border-color: #e94649 !important ;
+  background-color: #f8d2d2;
 }
 @media (max-width: 768px) {
   .formulario {
