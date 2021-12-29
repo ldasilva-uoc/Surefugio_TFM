@@ -100,14 +100,16 @@ export class AnimalItemComponent implements OnInit {
   }
 
   acoger(){
+    if (confirm('¿Seguro que contactar con la protectora para ACOGER este animal?')){
     this.buttonacoger = true;
     this.store.dispatch(acoger({idP:this.protectora_id, idA:this.animal?.id}))
   }
+}
 
   adoptar(){
+    if (confirm('¿Seguro que contactar con la protectora para ADOPTAR este animal?')){
     this.buttonadoptar = true
     this.store.dispatch(adoptar({idP:this.protectora_id, idA:this.animal?.id}))
-
-
+    }
   }
 }

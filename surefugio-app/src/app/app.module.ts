@@ -21,6 +21,8 @@ import { FavoritosComponent } from './profile_particular/componentes/favoritos/f
 import { ProfileParticularComponent } from './profile_particular/componentes/profile-particular/profile-particular.component';
 import { ProfileProtectoraComponent } from './profile_protectora/componentes/profile-protectora/profile-protectora.component';
 import { FooterComponent } from './shared/views/footer/footer.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+
 
 
 
@@ -38,6 +40,7 @@ import { FooterComponent } from './shared/views/footer/footer.component';
  
   ],
   imports: [
+
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -51,6 +54,12 @@ import { FooterComponent } from './shared/views/footer/footer.component';
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly:environment.production
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
     }),
   ],
   providers: [

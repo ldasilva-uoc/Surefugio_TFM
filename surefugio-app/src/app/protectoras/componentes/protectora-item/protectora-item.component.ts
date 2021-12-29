@@ -87,9 +87,10 @@ export class ProtectoraItemComponent implements OnInit {
   }
 
   voluntariado(){
+    if (confirm('¿Seguro que contactar con la protectora para ser VOLUNTARIO?')){
     this.buttonavoluntariado=true;
       this.store.dispatch(voluntariado({idP: this.protectora?.id}))
   }
-
+}
 }
 
