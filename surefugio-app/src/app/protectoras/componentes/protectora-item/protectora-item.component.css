@@ -91,6 +91,10 @@ h3 {
   width: 50px;
 }
 
+.imagenes {
+  opacity: 0.7;
+}
+
 @media only screen and (max-width: 992px) {
   .inner__header {
     width: 100%;
