@@ -1,133 +1,102 @@
-
 <div class="fondo">
-  <p>{{msgVoluntariado}}</p>
 
-  <div class="container" >
+  <div class="formulario row justify-content-center rounded shadow p-3 mb-5 bg-body" >
+      <h1 class="text-center">Perfil usuario</h1>
+      <div class="imagenes row justify-content-center ">
+         <!-- <img src="http://127.0.0.1:8000/storage/{{protectora?.imagen}}" alt="..." *ngIf="protectora?.imagen" class="rounded-circle">
+          <img src="../../../../assets/imagenes/protectora.jpg" alt="..." *ngIf="!protectora?.imagen" class="rounded-circle"> -->
+          <img src="../../../../assets/imagenes/protectora.jpg" alt="..." class="rounded-circle"> 
+      </div>
     
-    <div  *ngIf="islogin && !isProtectora">
-      <p class="border-end border-primary border-4 text-end" style="padding: 1%;" *ngIf="ProfileParticularState$.error && (buttonavoluntariado)">
-          No se ha podido contactar con la protectora, intentelo más tarde
-      </p>
-      <p class="border-end border-primary border-4 text-end" style="padding: 1%;" *ngIf="!ProfileParticularState$.error && (buttonavoluntariado)">
-          Se ha enviado un correo a la protectora con tu información, pronto se pondrán en contacto contigo
-      </p>
+      <div>    
+          <form [formGroup]="protectoraForm" (ngSubmit)="EditProtectora()" class="row justify-content-center">    
+              <!-- nombre -->
+              <div class="col-12">
+                  <label for="nombre">Nombre</label>
+                  <input type="text" [formControl]="nombre" class="form-control">
+                  <span style="color: red;" *ngIf="protectoraForm.get('nombre')?.errors && (protectoraForm.get('nombre')?.touched || protectoraForm.get('nombre')?.dirty)">
+                      <span *ngIf="protectoraForm.get('nombre')?.errors?.required">Campo obligatorio</span> 
+                  </span>
+               </div>
 
-      <p class="border-end border-primary border-4 text-end" style="padding: 1%;" *ngIf="ProfileParticularState$.error && (buttonaddfavorito)">
-          No se ha podido añadir a favoritos, intentelo más tarde
-      </p>
-      <p class="border-end border-primary border-4 text-end" style="padding: 1%;" *ngIf="!ProfileParticularState$.error && (buttonaddfavorito)">
-          Se ha añadido la protectora a favoritos
-      </p>
+               <div class="">
+                  <label for="imagen" class="form-label" >Imagen</label>
+                  <input class="form-control" type="file" id="imagen" [formControl]="imagen" (change)="onFileChange($event)">
+              </div>
 
-      <p class="border-end border-primary border-4 text-end" style="padding: 1%;" *ngIf="ProfileParticularState$.error && (buttondeletefavorito)">
-          No se ha podido eliminar la protectora de favoritos, intentelo más tarde
-      </p>
-      <p class="border-end border-primary border-4 text-end" style="padding: 1%;" *ngIf="!ProfileParticularState$.error && (buttondeletefavorito)">
-          Se ha eliminado la protectora de favoritos
-      </p>
-  </div>
- 
-  <div class="row justify-content-center  shadow p-3 mb-5 bg-body">
-      <div class="header d-flex justify-content-between align-items-center">
-          <div class="inner__header">
-              <h1>{{protectora?.nombre}}</h1>
-              <p>{{protectora?.ciudad}}, {{protectora?.pais}}</p>         
-          </div>
-          <div class="d-flex flex-column align-items-center" *ngIf="protectora?.voluntariado">
-              <button class="btn btn-primary boton__voluntariado" type="submit" (click)= "voluntariado()" *ngIf="islogin && !isProtectora" >Quiero ser voluntario!</button>
-          </div>
-      </div>
+
+               <div class="col-12">
+                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [formControl]="voluntariado" (change)="fieldsChange($event)">
+                  <label class="form-check-label" for="flexSwitchCheckDefault"> ¿Buscas voluntarios?</label> 
+               </div>
+
   
-      <div class="body row justify-content-between" >
-          <div class="col-md-4 cuadrado">
-            <div class="contenedor_imagen">
-              <div class="imagenes">
-                <img src="http://127.0.0.1:8000/storage/{{protectora?.imagen}}" alt="..." *ngIf="protectora?.imagen">
-                <img src="../../../../assets/imagenes/protectora.jpg" alt="..." *ngIf="!protectora?.imagen">  
+              <div class="col-12" *ngIf="needvoluntariado || req_voluntario">
+                  <label for="nombre">Requisitos para voluntarios</label>
+                  <textarea type="text" [formControl]="req_voluntario" class="form-control" placeholder="Requisitos para voluntarios">
+                  </textarea>
               </div>
-              <div class="botones_favoritos">
-                <img *ngIf="islogin && !isProtectora && !favorito" (click)="AddFav()" src="../../../../assets/imagenes/delete_fav.png">
-                <img *ngIf="islogin && !isProtectora && favorito" (click)= "RemoveFav()" src="../../../../assets/imagenes/add_fav.png">
-             
+
+              <div class="col-12">
+                  <label for="telefono">Teléfono</label>
+                  <input type="text" [formControl]="telefono" class="form-control" placeholder="Teléfono">
+                  <span style="color: red;" *ngIf="protectoraForm.get('telefono')?.errors && (protectoraForm.get('telefono')?.touched || protectoraForm.get('telefono')?.dirty)">
+                      <span *ngIf="protectoraForm.get('telefono')?.errors?.required">Campo obligatorio</span> 
+                  </span>
               </div>
-             </div>
-              <div class="d-flex justify-content-evenly" style="margin-top: 4%;">
-                <a href="{{protectora?.web}}" target="_blank" *ngIf="protectora?.web"> <img src="../../../../assets/imagenes/web.png" class="img_redes"></a>
-                <a href="{{protectora?.facebook}}" target="_blank" *ngIf="protectora?.facebook"><img src="../../../../assets/imagenes/face.png" class="img_redes"></a>
-                <a href="{{protectora?.instagram}}" target="_blank" *ngIf="protectora?.instagram"><img src="../../../../assets/imagenes/insta.png" class="img_redes"></a>
-              </div>
-          </div>
-          <div class="col-md-8 row justify-content-between datos__animal">
-              <div class="cuadrado col-12">
-                  <h3>Mis datos</h3>
-                  <ul>
-                      <li class="row justify-content-between">
-                          <p class="col-6 fw-bold">Teléfono</p>
-                          <p class="col-6 right_text">{{protectora?.telefono}}</p>
-                      </li>
-                      <li class="row justify-content-between">
-                          <p class="col-6 fw-bold">Búsca voluntarios?</p>
-                          <p *ngIf="protectora?.voluntariado" class="col-6 right_text">Sí</p>
-                          <p *ngIf="!protectora?.voluntariado" class="col-6 right_text">No</p>
-                      </li>
-                      <li class="row justify-content-between" *ngIf="protectora?.voluntariado">
-                          <p class="fw-bold">Requisitos para voluntariado:</p>
-                          <p class="">{{protectora?.req_voluntario}}</p>
-                      </li>
-                  </ul>
-              </div>
-  
-              <div class="col-12 cuadrado">
-                  <h3>Descripción</h3>
-                  <p>
-                    {{protectora?.historia}}
-                  </p>
-              </div>
-  
-          </div>
               
-  
-          <div class="col-12 animaleslist">
-
-            <div class="list list_animales">
-              <div>
-                <h2>Animales de la protectora</h2>
-                <p>Esta aprotectora tiene {{animales.length}} animales</p>
-            
-                <div class="list list_animales justify-content-center d-flex flex-wrap" style=" gap: 12px; margin-top: 5%;">
-                  <div class="card" style="width: 13rem;" *ngFor="let animal of animales" [routerLink]="['/animal', animal.id]">
-               
-                    <div class="card-body">
-                      <h5 class="card-title">{{animal.nombre}}</h5>
-                      <p class="card-text">{{animal.especie}}</p>
-                    </div>
-                    <img src="http://127.0.0.1:8000/storage/{{animal?.imagen}}"  class="card-img-buton" *ngIf="animal?.imagen">
-                    <img src="../../../../assets/imagenes/perro.jpg" alt="..." *ngIf="!animal?.imagen && animal?.especie === 'perro'">
-                    <img src="../../../../assets/imagenes/gato.jpg" alt="..." *ngIf="!animal?.imagen && animal?.especie === 'gato'">
-                    <img src="../../../../assets/imagenes/roedor.jpg" alt="..." *ngIf="!animal?.imagen && animal?.especie === 'roedor'">
-                   
-                    <div class="card-body urgente text-center" *ngIf="animal.urgente">
-                      Urgente
-                    </div>
-                    <div class="card-body adopcion text-center" *ngIf="!animal.urgente && animal.adopcion && !animal.acogida">
-                      Adopcion
-                    </div>
-                    <div class="card-body acogida text-center" *ngIf="!animal.urgente && animal.adopcion && animal.acogida">
-                      Acogida
-                    </div>
-                   
-                  </div>
-                </div>
-            
-            
+              <div class="col-12">
+                  <label for="web">Web</label>
+                  <input type="text" [formControl]="web" class="form-control" placeholder="URL de la web">
               </div>
-            </div>
-          </div>
-      </div>
-  
-  </div>
 
+              <div class="col-12">
+                  <label for="facebook">Facebook</label>
+                  <input type="text" [formControl]="facebook" class="form-control" placeholder="URL de la cuenta de facebook">
+              </div>
+
+              <div class="col-12">
+                  <label for="instagram">Instagram</label>
+                  <input type="text" [formControl]="instagram" class="form-control" placeholder="URL de la cuenta deinstagram">
+              </div>
+
+              <div class="col-12">
+                  <label for="historia">Historia</label>
+                  <textarea type="text" [formControl]="historia" class="form-control" placeholder="Cuentanos algo de la portectora">
+                  </textarea>
+              </div>
+
+              <div class="col-12">
+                  <label for="pais" class="form-label" >Pais</label>
+                  <input type="text" class="form-control" id="pais"  type="text" [formControl]="pais" placeholder="pais" required>
+                  <span style="color: red;" *ngIf="protectoraForm.get('pais')?.errors && (protectoraForm.get('pais')?.touched || protectoraForm.get('pais')?.dirty)">
+                      <span *ngIf="protectoraForm.get('pais')?.errors?.required">Campo obligatorio</span> 
+                  </span>
+              </div>
+          
+              <div class="col-12">
+                  <label for="ciudad" class="form-label" >Ciudad</label>
+                  <input type="text" class="form-control" id="ciudad"  type="text" [formControl]="ciudad" placeholder="ciudad" required>
+                  <span style="color: red;" *ngIf="protectoraForm.get('ciudad')?.errors && (protectoraForm.get('ciudad')?.touched || protectoraForm.get('ciudad')?.dirty)">
+                      <span *ngIf="protectoraForm.get('ciudad')?.errors?.required">Campo obligatorio</span> 
+                  </span>
+              </div>
+          
+              <div class="col-12">
+                  <label for="provincia" class="form-label" >Provincia</label>
+                  <input type="text" class="form-control" id="provincia"  type="text" [formControl]="provincia" placeholder="provincia" required>
+                  <span style="color: red;" *ngIf="protectoraForm.get('provincia')?.errors && (protectoraForm.get('provincia')?.touched || protectoraForm.get('provincia')?.dirty)">
+                      <span *ngIf="protectoraForm.get('provincia')?.errors?.required">Campo obligatorio</span> 
+                  </span>
+              </div>
+          
+
+              <div class="col-12 justify-content-center row botones" >
+                  <button class="btn btn-primary my-4" type="submit" [disabled]="!protectoraForm.valid" >Guardar cambios</button>  
+              </div>
+
+          </form>    
+      </div> 
   </div>
 
 </div>
-

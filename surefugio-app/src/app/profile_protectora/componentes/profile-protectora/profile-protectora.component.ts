@@ -40,7 +40,6 @@ export class ProfileProtectoraComponent implements OnInit {
   protectoraState$: ProfileProtectoraState;
   protectoraForm: FormGroup;
 
-  public QuieroEditar:boolean;
   public islogin:boolean;
 
 
@@ -69,24 +68,24 @@ export class ProfileProtectoraComponent implements OnInit {
     if(!this.islogin){
       this.router.navigate(['/portada']);
     }
-    this.QuieroEditar = false;
+ 
     this.formulario()
 
   }
 
   formulario(){
-    this.nombre = new FormControl({value: this.protectora.nombre, disabled:true}, [Validators.required]);
-    this.voluntariado = new FormControl({value:this.protectora.voluntariado,disabled:true}, [Validators.required]);
-    this.telefono = new FormControl({value:this.protectora.telefono,disabled:true}, [Validators.required]);
-    this.pais = new FormControl({value:this.protectora.pais,disabled:true}, [Validators.required]);
-    this.ciudad = new FormControl({value:this.protectora.ciudad,disabled:true}, [Validators.required]);
-    this.provincia = new FormControl({value:this.protectora.provincia,disabled:true}, [Validators.required]);
-    this.req_voluntario = new FormControl({value:this.protectora.req_voluntario,disabled:true});
-    this.web = new FormControl({value:this.protectora.web,disabled:true});
-    this.facebook = new FormControl({value:this.protectora.facebook,disabled:true});
-    this.instagram = new FormControl({value:this.protectora.instagram,disabled:true});
-    this.historia = new FormControl({value:this.protectora.historia,disabled:true});
-    this.imagen = new FormControl({value:this.protectora.imagen,disabled:true});
+    this.nombre = new FormControl(this.protectora.nombre, [Validators.required]);
+    this.voluntariado = new FormControl(this.protectora.voluntariado, [Validators.required]);
+    this.telefono = new FormControl(this.protectora.telefono, [Validators.required]);
+    this.pais = new FormControl(this.protectora.pais, [Validators.required]);
+    this.ciudad = new FormControl(this.protectora.ciudad, [Validators.required]);
+    this.provincia = new FormControl(this.protectora.provincia, [Validators.required]);
+    this.req_voluntario = new FormControl(this.protectora.req_voluntario);
+    this.web = new FormControl(this.protectora.web);
+    this.facebook = new FormControl(this.protectora.facebook);
+    this.instagram = new FormControl(this.protectora.instagram);
+    this.historia = new FormControl(this.protectora.historia);
+    this.imagen = new FormControl(this.protectora.imagen);
 
     this.protectoraForm = this.formBuilder.group({
     nombre : this.nombre,
@@ -129,26 +128,10 @@ export class ProfileProtectoraComponent implements OnInit {
     formData.append('instagram', this.instagram.value);
     formData.append('historia', this.historia.value );
     formData.append('user_id', this.user$.id+"");
-
-   this.store.dispatch(UserAction.editProtectora({formData: formData}));
-   this.protectoraForm.disable()
-   this.QuieroEditar = false;
-  }
-
-  edit(){
-    this.QuieroEditar = true;
-    this.protectoraForm.enable()
-  }
-
-  cancelarEdit(){
-
-    if(confirm("¿Estas seguro que quieres cancelar la edición de tus datos?")){
-      this.formulario()
-      this.QuieroEditar = false;
-      this.protectoraForm.disable()
-    }
-
+    if(confirm("¿Estas seguro que quieres cambiar tus datos?")){
+   this.store.dispatch(UserAction.editProtectora({formData: formData})); }
   }
 
 
 }
+

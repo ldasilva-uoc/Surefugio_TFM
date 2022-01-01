@@ -1,11 +1,11 @@
-
 <div class="fondo">
 
     <div class="formulario row justify-content-center rounded shadow p-3 mb-5 bg-body" >
         <h1 class="text-center">Perfil usuario</h1>
         <div class="imagenes row justify-content-center ">
-            <img src="http://127.0.0.1:8000/storage/{{protectora?.imagen}}" alt="..." *ngIf="protectora?.imagen" class="rounded-circle">
-            <img src="../../../../assets/imagenes/protectora.jpg" alt="..." *ngIf="!protectora?.imagen" class="rounded-circle"> 
+           <!-- <img src="http://127.0.0.1:8000/storage/{{protectora?.imagen}}" alt="..." *ngIf="protectora?.imagen" class="rounded-circle">
+            <img src="../../../../assets/imagenes/protectora.jpg" alt="..." *ngIf="!protectora?.imagen" class="rounded-circle"> -->
+            <img src="../../../../assets/imagenes/protectora.jpg" alt="..." class="rounded-circle"> 
         </div>
       
         <div>    
@@ -31,9 +31,9 @@
                  </div>
 
     
-                <div class="col-12" *ngIf="needvoluntariado">
+                <div class="col-12" *ngIf="needvoluntariado || req_voluntario">
                     <label for="nombre">Requisitos para voluntarios</label>
-                    <textarea type="text" [formControl]="req_voluntariado" class="form-control" placeholder="Requisitos para voluntarios">
+                    <textarea type="text" [formControl]="req_voluntario" class="form-control" placeholder="Requisitos para voluntarios">
                     </textarea>
                 </div>
 
@@ -90,15 +90,9 @@
                     </span>
                 </div>
             
-                <div class="col-12 justify-content-center row botones" *ngIf="!QuieroEditar">
-                    <button class="btn btn-primary my-4" type="submit" (click)="edit()">Editar</button> 
-                </div>
-                
 
-                <div class="col-12 justify-content-center row botones" *ngIf="QuieroEditar">
-                     
-                    <button class="btn btn-primary my-4" type="submit" [disabled]="!protectoraForm.valid" >Guardar</button>  
-                    <button class="btn btn-secondary my-4"(click) = "cancelarEdit()" >Cancelar</button>
+                <div class="col-12 justify-content-center row botones" >
+                    <button class="btn btn-primary my-4" type="submit" [disabled]="!protectoraForm.valid" >Guardar cambios</button>  
                 </div>
 
             </form>    

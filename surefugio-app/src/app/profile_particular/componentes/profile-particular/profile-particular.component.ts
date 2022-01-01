@@ -31,7 +31,6 @@ export class ProfileParticularComponent implements OnInit {
   ParticularState$: ProfileParticularState;
   particularForm: FormGroup;
 
-  public QuieroEditar:boolean=false;
   public user$: User;
   public particular:Particular;
   public islogin:boolean;
@@ -59,19 +58,20 @@ export class ProfileParticularComponent implements OnInit {
     if(!this.islogin){
       this.router.navigate(['/portada']);
     }
-    this.QuieroEditar = false;
+
+
     this.formulario();
 
 
   }
   formulario(){
 
-    this.nombre = new FormControl({value: this.particular.nombre, disabled:true}, [Validators.required]);
-    this.apellido = new FormControl({value: this.particular.apellido, disabled:true}, [Validators.required]);
-    this.telefono = new FormControl({value: this.particular.telefono, disabled:true}, [Validators.required]);
-    this.pais = new FormControl({value: this.particular.pais, disabled:true}, [Validators.required]);
-    this.ciudad = new FormControl({value: this.particular.ciudad, disabled:true}, [Validators.required]);
-    this.provincia = new FormControl({value: this.particular.provincia, disabled:true}, [Validators.required]);
+    this.nombre = new FormControl( this.particular.nombre, [Validators.required]);
+    this.apellido = new FormControl( this.particular.apellido, [Validators.required]);
+    this.telefono = new FormControl( this.particular.telefono, [Validators.required]);
+    this.pais = new FormControl( this.particular.pais, [Validators.required]);
+    this.ciudad = new FormControl( this.particular.ciudad, [Validators.required]);
+    this.provincia = new FormControl( this.particular.provincia, [Validators.required]);
  
     this.particularForm = this.formBuilder.group({
       nombre : this.nombre,
@@ -85,33 +85,8 @@ export class ProfileParticularComponent implements OnInit {
     
   }
 
-  edit(){
-    this.QuieroEditar = true;
-    this.particularForm.enable()
-  }
-
-  
-  cancelarEdit(){
-
-    if(confirm("¿Estas seguro que quieres cancelar la edición de tus datos?")){
-      this.formulario()
-      this.QuieroEditar = false;
-      this.particularForm.disable()
-    }
-
-  }
-
 
   public EditParticular(){
-    this.particular= {
-      nombre: this.nombre.value,
-      apellido: this.apellido.value,
-      telefono : this.telefono?.value,
-      pais: this.pais.value,
-      ciudad:this.ciudad.value,
-      provincia: this.provincia.value,
-      user_id: this.user$.id,      
-    }
 
     const formData = new FormData();
 
@@ -127,8 +102,8 @@ export class ProfileParticularComponent implements OnInit {
     formData.append('user_id', this.user$.id+"");
 
     console.log(this.particular)
-
-   this.store.dispatch(UserAction.editParticular({formData : formData }))
+    if(confirm("¿Estas seguro que quieres cambiar tus datos?")){
+   this.store.dispatch(UserAction.editParticular({formData : formData }))}
   }
 
 
