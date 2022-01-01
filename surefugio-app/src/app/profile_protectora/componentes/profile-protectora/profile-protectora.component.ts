@@ -67,7 +67,8 @@ export class ProfileProtectoraComponent implements OnInit {
   ngOnInit(): void {
     if(!this.islogin){
       this.router.navigate(['/portada']);
-    }
+    } 
+    this.store.dispatch(UserAction.getProtectora());
  
     this.formulario()
 

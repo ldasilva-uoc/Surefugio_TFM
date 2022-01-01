@@ -59,7 +59,7 @@ export class ProfileParticularComponent implements OnInit {
       this.router.navigate(['/portada']);
     }
 
-
+    this.store.dispatch(UserAction.getParticular());
     this.formulario();
 
 
